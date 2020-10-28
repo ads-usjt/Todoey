@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+$AccentColor: #45F6EB;
+
+#app{
+  background: linear-gradient(96.17deg, #3BB5D4 0%, #31CFE8 92.95%);
+  height: 100vh;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+main {
+  position: relative;
+  background-color: #F5F5F5;
+  border-radius: 50px 50px 0 0;
+  height: 100%;
+  #add-reminder {
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    top: -50px;
+    right: 65px;
+    padding-bottom: 6px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    background-color: $AccentColor;
+    font-size: 72px;
+    color: white;
+    transition: all 0.3s;
+    &:hover{
+      background-color: #40e7dc;
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+  }
+}
