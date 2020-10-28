@@ -1,0 +1,16 @@
+vscode:
+  extensions:
+    - PKief.material-icon-theme@4.3.0:URe4ANXBLYHzB6CeGyTN8A==
+    - dracula-theme.theme-dracula@2.22.1:acEEGtphPo3sp9+wXQiSyw==
+    - Angular.ng-template@0.1000.8:GcAfooMprywLsA5xSiWqXg==
+    - naumovs.color-highlight@2.3.0:6nKORbxgnWjNaN6xACiaQQ==
+    - Zignd.html-css-class-completion@1.19.0:Soyzg8syqQX3vm86CKnPtg==
+
+ports:
+- port: 4200
+  onOpen: open-preview
+
+tasks:
+  - before: export NG_CLI_ANALYTICS=off off
+    init: npm i -g @angular/cli; yarn
+    command: ng serve
