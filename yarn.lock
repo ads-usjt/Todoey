@@ -220,13 +220,6 @@
   dependencies:
     tslib "^2.0.0"
 
-"@angular/material@^10.2.6":
-  version "10.2.6"
-  resolved "https://registry.yarnpkg.com/@angular/material/-/material-10.2.6.tgz#7dab3f9c199319ae8912ad8e37836d94bb2694e0"
-  integrity sha512-xF+UoinJYrMuvyTRcFeg8DNDvykeIRbEpCwY4hYX4So7t6yr89W5D2htkbzilRkum3ZhhkGqjjCaI/B1B9J1Vg==
-  dependencies:
-    tslib "^2.0.0"
-
 "@angular/platform-browser-dynamic@~10.2.0":
   version "10.2.0"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-10.2.0.tgz#08ccd67fecc0269b1335e8efb1b7ef6d06a7f389"
@@ -1974,6 +1967,11 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
+
+bootstrap-icons@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/bootstrap-icons/-/bootstrap-icons-1.1.0.tgz#8f2e268a563e3056723171dfd1c5f78a8c3e1677"
+  integrity sha512-z5wWjw+SGLdDdP9R5qqEYSi+yRJOeOwlGW83VNftMO+jIgW/rtxHk3LI8sRxPYZEB0G+btJaEiUKLKsx3Mlycg==
 
 bootstrap@4.1.1:
   version "4.1.1"
