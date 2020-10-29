@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 
 import { FeatherModule } from 'angular-feather';
-import { Camera, Heart, Github } from 'angular-feather/icons';
+import { Edit2, Trash2, Github } from 'angular-feather/icons';
 
 const icons = {
-  Camera,
-  Heart,
+  Edit2,
+  Trash2,
   Github
 };
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
@@ -12,4 +13,11 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onAddReminder(form: NgForm){
+    if (form.invalid) return;
+        form.value.nome,
+        form.value.fone,
+        form.value.email
+    form.resetForm();
+  }
 }
