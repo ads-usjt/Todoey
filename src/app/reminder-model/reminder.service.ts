@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Reminder } from './reminder-model';
+import { Reminder } from './reminder.entity';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ReminderServiceService {
+export class ReminderService {
   private reminders: Array<Reminder> = [];
 
   constructor() { }

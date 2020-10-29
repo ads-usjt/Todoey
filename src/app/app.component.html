@@ -3,9 +3,9 @@
     <app-header></app-header>
   </header>
   <main>
-    <button id="add-reminder">+</button>
+    <button id="add-reminder" (click)="showDivFunction(true)">+</button>
     <div class="container">
-      <div class="form-div">
+      <div class="form-div" *ngIf="showForm">
         teste
       </div>
       <app-reminder-card></app-reminder-card>

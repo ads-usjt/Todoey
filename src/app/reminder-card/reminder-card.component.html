@@ -1,19 +1,22 @@
 <div class="row">
-  <div class="col-4">
+  <div class="col-4" *ngFor="let reminder of reminders">
     <div class="card">
       <div class="card-title">
-        <h5 class="card-title-text">Card title</h5>
+        <h5 class="card-title-text">{{reminder.title}}</h5>
       </div>
       <div class="card-body">
         <span class="crop-text-2 card-body-text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, nulla sequi consequuntur, libero quia autem fugit, harum quaerat quibusdam minima distinctio saepe. Vel, at soluta! Nulla laudantium blanditiis ut odio.
+          {{reminder.body}}
         </span>
-        <div class="float-right">
-
-          <i-feather name="edit-2" class="someclass"></i-feather>
-
-          <i-feather name="trash-2" class="ml-2 someclass"></i-feather>
-
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex flex-column">
+            <label class="m-0">Deadline:</label>
+            <p class="m-0">{{reminder.deadline | date: "EEE dd/MM/yyyy hh:mm"}}</p>
+          </div>
+          <div>
+            <i-feather name="edit-2" class="someclass"></i-feather>
+            <i-feather name="trash-2" class="ml-2 someclass"></i-feather>
+          </div>
         </div>
       </div>
     </div>

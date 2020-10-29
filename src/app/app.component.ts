@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent{
   title = 'Todoey';
+  showForm = false
 
-  ngOnInit(): void {
-    let div = document.getElementsByClassName('form-div')
-    console.log(div[0])
-
+  showDivFunction(show = false) {
+    this.showForm = show
   }
 }

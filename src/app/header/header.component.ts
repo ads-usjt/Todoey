@@ -1,23 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ReminderService } from '../reminder-model/reminder.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  constructor(public reminderService: ReminderService) { }
 
   onAddReminder(form: NgForm){
     if (form.invalid) return;
-        form.value.nome,
-        form.value.fone,
-        form.value.email
+    this.reminderService.addReminder(
+      form.value.title,
+      form.value.deadline,
+      form.value.body
+    )
     form.resetForm();
   }
 }
