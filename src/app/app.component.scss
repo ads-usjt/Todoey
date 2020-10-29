@@ -14,17 +14,17 @@ main {
   border-radius: 50px 50px 0 0;
   height: 100%;
   #add-reminder {
-    height: 100px;
-    width: 100px;
+    height: 80px;
+    width: 80px;
     position: absolute;
-    top: -50px;
+    top: -40px;
     right: 65px;
     padding-bottom: 6px;
     border-radius: 50%;
     border: none;
     outline: none;
     background-color: $AccentColor;
-    font-size: 72px;
+    font-size: 50px;
     color: white;
     transition: all 0.3s;
     &:hover{
