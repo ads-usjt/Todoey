@@ -3,11 +3,10 @@ import { getRepository } from 'typeorm';
 
 import User from '../models/User';
 
-const userRepository = getRepository(User);
-
 export default {
 
   async index(request: Request, response: Response){
+    const userRepository = getRepository(User);
     const users = await userRepository.find({
       relations: ['reminders']
     })
@@ -15,6 +14,7 @@ export default {
   },
 
   async show(request: Request, response: Response){
+    const userRepository = getRepository(User);
     const { id } = request.params;
 
     const user = await userRepository.findOneOrFail(id, {
@@ -25,6 +25,7 @@ export default {
   },
 
   async create (request: Request, response: Response){
+    const userRepository = getRepository(User);
     const {
       name,
       email,
@@ -41,6 +42,7 @@ export default {
   },
 
   async update (request: Request, response: Response){
+    const userRepository = getRepository(User);
     const {
       id,
       name,

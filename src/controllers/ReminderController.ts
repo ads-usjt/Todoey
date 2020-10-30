@@ -4,12 +4,10 @@ import { getRepository } from 'typeorm';
 import Reminder from '../models/Reminder';
 import User from '../models/User';
 
-const reminderRepository = getRepository(Reminder);
-const userRepository = getRepository(User);
-
 export default {
 
   async index(request: Request, response: Response){
+    const reminderRepository = getRepository(Reminder);
     const reminders = await reminderRepository.find({
       relations: ['user']
     })
@@ -17,6 +15,7 @@ export default {
   },
 
   async show(request: Request, response: Response){
+    const reminderRepository = getRepository(Reminder);
     const { id } = request.params;
 
     const reminder = await reminderRepository.findOneOrFail(id, {
@@ -27,6 +26,8 @@ export default {
   },
 
   async create (request: Request, response: Response){
+    const reminderRepository = getRepository(Reminder);
+    const userRepository = getRepository(User);
     const {
       user_id,
       title,
@@ -47,6 +48,7 @@ export default {
   },
 
   async delete(request: Request, response: Response){
+    const reminderRepository = getRepository(Reminder);
     const { id } = request.params;
 
     const reminder = await reminderRepository.findOneOrFail(id, {
@@ -59,6 +61,8 @@ export default {
   },
 
   async update (request: Request, response: Response){
+    const reminderRepository = getRepository(Reminder);
+    const userRepository = getRepository(User);
     const {
       reminder_id: id,
       user_id,
