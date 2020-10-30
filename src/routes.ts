@@ -4,6 +4,12 @@ import UserController from './controllers/UserController';
 
 const routes = Router();
 
+routes.get('/', (request, response) => {
+  return response.json({
+    welcome_message: 'Todoey REST API: https://ads-usjt.github.io/Todoey'
+  })
+})
+
 routes.get('/reminders', ReminderController.index);
 routes.get('/reminders:id', ReminderController.show);
 routes.post('/reminders', ReminderController.create);

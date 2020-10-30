@@ -1,6 +1,8 @@
 import express from 'express';
 import 'express-async-errors';
 
+import './database/connection';
+
 import cors from 'cors';
 
 import routes from './routes';
@@ -12,4 +14,4 @@ app.use(routes);
 
 const port = process.env.PORT || 3333;
 
-app.listen(port, () => console.log(`💻 Server is running at port ${port}`));
+app.listen(port, () => console.log(`💻  Server is running at port ${port}`));
