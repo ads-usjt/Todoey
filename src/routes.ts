@@ -11,14 +11,14 @@ routes.get('/', (request, response) => {
 })
 
 routes.get('/reminders', ReminderController.index);
-routes.get('/reminders:id', ReminderController.show);
+routes.get('/reminders/:id', ReminderController.show);
 routes.post('/reminders', ReminderController.create);
-routes.delete('/reminders:id', ReminderController.delete);
-routes.put('/reminders:id', ReminderController.update);
+routes.delete('/reminders/:id', ReminderController.delete);
+routes.put('/reminders/:id', ReminderController.update);
 
 routes.get('/users', UserController.index);
-routes.get('/users:id', UserController.show);
+routes.get('/users/:id', UserController.show);
 routes.post('/users', UserController.create);
-routes.put('/users:id', UserController.update);
+routes.put('/users/:id', UserController.update);
 
 export default routes;
