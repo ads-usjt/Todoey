@@ -22,6 +22,6 @@ export default class Reminder{
 
   @ManyToOne(() => User, user => user.reminders)
   @JoinColumn({name: 'user_id'})
-  user: User;
+  user?: User;
 
 }
