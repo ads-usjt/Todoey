@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn } from 't
 
 import Reminder from './Reminder';
 
-@Entity('user_login')
+@Entity('user')
 export default class User{
 
   @PrimaryGeneratedColumn('increment')

@@ -39,7 +39,7 @@ export class createReminder1604004280960 implements MigrationInterface {
           {
             name: 'ReminderUser',
             columnNames: ['user_id'],
-            referencedTableName: 'user_login',
+            referencedTableName: 'user',
             referencedColumnNames: ['id'],
             onUpdate: 'CASCADE',
             onDelete: 'CASCADE'
