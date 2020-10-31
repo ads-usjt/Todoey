@@ -24,11 +24,11 @@ export class createReminder1604004280960 implements MigrationInterface {
           },
           {
             name: 'deadline',
-            type: 'integer',
+            type: 'bigint',
           },
           {
             name: 'createdAt',
-            type: 'integer',
+            type: 'bigint',
           },
           {
             name: 'user_id',
