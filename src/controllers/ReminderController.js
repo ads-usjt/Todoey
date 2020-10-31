@@ -27,8 +27,9 @@ exports.default = {
         const userRepository = typeorm_1.getRepository(User_1.default);
         const { user_id, title, deadline, body, } = request.body;
         const user = await userRepository.findOneOrFail(user_id);
+        const createdAt = Date.now();
         const reminder = await reminderRepository.create({
-            user, title, deadline, createdAt: Date.now(), body
+            user, title, deadline, createdAt, body
         });
         await reminderRepository.save(reminder);
         return response.status(201).json(reminder);
@@ -45,9 +46,10 @@ exports.default = {
     async update(request, response) {
         const reminderRepository = typeorm_1.getRepository(Reminder_1.default);
         const { title, deadline, body, } = request.body;
-        const id = parseInt(request.params.id);
+        const id = Number(request.params.id);
+        const createdAt = Date.now();
         const updatedReminder = {
-            id, title, deadline, createdAt: Date.now(), body,
+            id, title, deadline, createdAt, body,
         };
         await reminderRepository.save(updatedReminder);
         return response.json(updatedReminder);
