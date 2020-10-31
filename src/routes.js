@@ -13,12 +13,12 @@ routes.get('/', (request, response) => {
     });
 });
 routes.get('/reminders', ReminderController_1.default.index);
-routes.get('/reminders:id', ReminderController_1.default.show);
+routes.get('/reminders/:id', ReminderController_1.default.show);
 routes.post('/reminders', ReminderController_1.default.create);
-routes.delete('/reminders:id', ReminderController_1.default.delete);
-routes.put('/reminders:id', ReminderController_1.default.update);
+routes.delete('/reminders/:id', ReminderController_1.default.delete);
+routes.put('/reminders/:id', ReminderController_1.default.update);
 routes.get('/users', UserController_1.default.index);
-routes.get('/users:id', UserController_1.default.show);
+routes.get('/users/:id', UserController_1.default.show);
 routes.post('/users', UserController_1.default.create);
-routes.put('/users:id', UserController_1.default.update);
+routes.put('/users/:id', UserController_1.default.update);
 exports.default = routes;
