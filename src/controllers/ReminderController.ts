@@ -37,8 +37,10 @@ export default {
 
     const user: User = await userRepository.findOneOrFail(user_id);
 
+    const createdAt = Date.now();
+
     const reminder = await reminderRepository.create({
-      user, title, deadline, createdAt: Date.now(), body
+      user, title, deadline, createdAt, body
     });
 
     await reminderRepository.save(reminder);
@@ -62,14 +64,16 @@ export default {
   async update (request: Request, response: Response){
     const reminderRepository = getRepository(Reminder);
     const {
-      id,
       title,
       deadline,
       body,
     } = request.body;
 
+    const id = Number(request.params.id);
+    const createdAt = Date.now();
+
     const updatedReminder: Reminder = {
-      id, title, deadline, createdAt: Date.now(), body,
+      id, title, deadline, createdAt, body,
     };
 
     await reminderRepository.save(updatedReminder);
