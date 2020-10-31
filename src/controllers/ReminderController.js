@@ -45,7 +45,7 @@ exports.default = {
     async update(request, response) {
         const reminderRepository = typeorm_1.getRepository(Reminder_1.default);
         const { title, deadline, body, } = request.body;
-        const id = Number(request.params.id);
+        const id = request.params.id;
         const updatedReminder = {
             id, title, deadline, createdAt: Date.now(), body,
         };
