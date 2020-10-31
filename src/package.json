@@ -6,6 +6,9 @@
   "main": "src/server.js",
   "license": "MIT",
   "author": "Lucas Souza",
+  "scripts": {
+    "start": "node ./src/server.js"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",

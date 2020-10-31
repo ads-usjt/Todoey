@@ -8,8 +8,8 @@
   "scripts": {
     "dev": "export NODE_ENV=development; ts-node-dev --ignore-watch node_modules src/server.ts",
     "start": "export NODE_ENV=production; node dist/src/server.js",
-    "build": "tsc -p .; cp src/package.json ormconfig.js ./dist",
-    "predeploy": "tsc -p .; cp src/package.json ormconfig.js ./dist",
+    "build": "tsc -p .; cp src/package.json ormconfig.js Procfile ./dist",
+    "predeploy": "tsc -p .; cp src/package.json ormconfig.js Procfile ./dist",
     "deploy": "gh-pages -d ./dist -b heroku-api-deploy; rm -rf ./dist",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
   },
