@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": "Lucas Souza",
   "scripts": {
-    "dev": "export NODE_ENV=development; ts-node-dev --ignore-watch node_modules src/server.ts",
+    "dev": "export NODE_ENV=development; ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
     "start": "export NODE_ENV=production; ts-node-dev src/server.ts",
     "predeploy": "tsc -p .; cp src/package.json ormconfig.js Procfile ./dist",
     "deploy": "gh-pages -d ./dist -b heroku-rest-deploy; rm -rf ./dist",
