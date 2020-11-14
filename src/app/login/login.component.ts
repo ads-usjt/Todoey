@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms'
+import { Router } from '@angular/router';
+import { AccountService } from '../account/shared/account.service';
 
-
-import { AuthService } from '../login-model/auth.service';
 import { User } from '../login-model/user';
 
 @Component({
@@ -11,18 +12,27 @@ import { User } from '../login-model/user';
 })
 export class LoginComponent implements OnInit {
 
-  user: User = new User();
+  login = new User();
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private accountService: AccountService,
+    private router: Router
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
-  Login() {
-    // console.log("ok feito");
+  async onSubmit(form: NgForm) {
+    try {
+      const { name, password } = form.value;
+      this.login = { name, password };
 
-    this.authService.Login(this.user);
+      const result = await this.accountService.login(this.login);
+      console.info(`Login done: ${result}`);
 
+      this.router.navigate(['/home']);
+    } catch (error) {
+      console.error(`Login Error: ${error}`);
+    }
   }
-
 }

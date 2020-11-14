@@ -2,6 +2,9 @@
 
 #app{
   background: linear-gradient(96.17deg, #3BB5D4 0%, #31CFE8 92.95%);
-  height: 100%;
+  min-height: 100%;
+  height: auto;
   font-family: 'Ubuntu', sans-serif;
+  display:flex;
+  flex-direction: column;
 }

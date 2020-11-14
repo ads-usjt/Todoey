@@ -1,8 +1,14 @@
+:host{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 main {
+  flex: 1;
   position: relative;
   background-color: #F5F5F5;
   border-radius: 50px 50px 0 0;
-  height: 100%;
   padding-bottom: 2rem;
   #add-reminder {
     height: 80px;

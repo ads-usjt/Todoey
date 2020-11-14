@@ -13,9 +13,15 @@ export class RegisterComponent {
 
   register: Register = new Register();
 
-  onAddRegister() {
-    this.registerAdd.emit(this.register);
+  // async onSubmit() {
+  //   try {
+  //     const result = await this.accountService.createAccount(this.account);
 
-  }
+  //     // exibir uma msg amigavel aqui
+  //     console.log(result);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 
 }
