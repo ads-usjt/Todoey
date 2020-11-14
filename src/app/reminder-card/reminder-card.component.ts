@@ -15,16 +15,20 @@ export class ReminderCardComponent implements OnInit, OnDestroy {
   private reminderSubscription: Subscription;
 
   ngOnInit(): void {
-    this.reminders = this.reminderService.getReminders();
+    this.reminderService.getReminders();
 
-    let clientesObservable: Observable<Reminder[]> = this.reminderService.getReminderListObservable();
+    let remindersObservable: Observable<Reminder[]> = this.reminderService.getReminderListObservable();
 
-    this.reminderSubscription = clientesObservable.subscribe((reminders:Reminder[]) => {
+    this.reminderSubscription = remindersObservable.subscribe((reminders: Array<Reminder>) => {
       this.reminders = reminders;
     });
   }
 
   ngOnDestroy(): void {
     this.reminderSubscription.unsubscribe();
+  }
+
+  onDelete(id: number) {
+    this.reminderService.removeReminder(id);
   }
 }

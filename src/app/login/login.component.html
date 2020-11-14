@@ -1,0 +1,23 @@
+<div class="app-header">
+  <h1>Todoey</h1>
+</div>
+
+<div class="row">
+  <div class="input-field col s6">
+    <input [(ngModel)]="user.name" type="text" id="user" class="validate">
+    <label class="active" for="user">Usuário</label>
+  </div>
+</div>
+
+<div class="row">
+  <div class="input-field col s6">
+    <input [(ngModel)]="user.password" type="password" id="password">
+    <label class="active" for="password">Senha</label>
+  </div>
+</div>
+
+<a href="">Cadastra-se</a>
+
+<button class="btn btn-primary" type="submit" (click)="Login()">Login
+
+</button>

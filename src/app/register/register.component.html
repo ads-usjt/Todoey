@@ -1,0 +1,31 @@
+<div>
+  <h1>Cadastro Usuário</h1>
+</div>
+
+<mat-card>
+  <mat-form-field>
+    <input type="text" matInput placeholder="Name" [(ngModel)]="name" />
+  </mat-form-field>
+  <p>
+    <mat-form-field>
+      <input type="text" matInput placeholder="CPF" [(ngModel)]="cpf" />
+    </mat-form-field>
+  <p>
+    <mat-form-field>
+      <input type="date" matInput placeholder="Data de Nascimento" [(ngModel)]="date" />
+    </mat-form-field>
+  <p>
+    <mat-form-field>
+      <input type="email" matInput placeholder="E-mail" [(ngModel)]="email" />
+    </mat-form-field>
+  <p>
+    <mat-form-field>
+      <input type="tel" matInput placeholder="Telefone" [(ngModel)]="telephone" />
+    </mat-form-field>
+  <p>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Senha" [(ngModel)]="password" />
+    </mat-form-field>
+  <p>
+    <button color="primary" mat-raised-button (click)="onAddRegister()">Cadastrar</button>
+</mat-card>

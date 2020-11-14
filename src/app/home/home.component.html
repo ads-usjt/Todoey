@@ -1,0 +1,39 @@
+<header>
+  <app-header></app-header>
+</header>
+<main id="home">
+  <button id="add-reminder" (click)="showDivFunction(true)">+</button>
+  <div class="container">
+    <div class="form-div" *ngIf="showForm">
+      <mat-card>
+        <form (submit)="onAddReminder(reminderForm)" #reminderForm="ngForm">
+          <div class="inputs-container">
+            <h3>New Reminder</h3>
+            <fieldset>
+              <div class="mat-card-header">
+                <mat-form-field>
+                  <input type="text" matInput placeholder="title" name="title" minlength="3" maxlength="13" ngModel
+                    #nome="ngModel" required [ngModel]="reminder?.title" />
+                </mat-form-field>
+
+                <mat-form-field>
+                  <input type="date" matInput placeholder="deadline" name="deadline" ngModel #nome="ngModel" required
+                    [ngModel]="reminder?.deadline" />
+                </mat-form-field>
+              </div>
+
+              <mat-form-field class="mat-input-reminder">
+                <textarea matInput placeholder="reminder" name="body" ngModel #nome="ngModel" rows="3" required
+                  [ngModel]="reminder?.body"></textarea>
+              </mat-form-field>
+            </fieldset>
+            <button mat-raised-button color="primary">
+              Add Reminder
+            </button>
+          </div>
+        </form>
+      </mat-card>
+    </div>
+    <app-reminder-card></app-reminder-card>
+  </div>
+</main>
