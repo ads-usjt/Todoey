@@ -9,6 +9,7 @@ exports.default = {
     async index(request, response) {
         const userRepository = typeorm_1.getRepository(User_1.default);
         const users = await userRepository.find({
+            select: ['id', 'name', 'email'],
             relations: ['reminders']
         });
         return response.json(users);
@@ -17,8 +18,15 @@ exports.default = {
         const userRepository = typeorm_1.getRepository(User_1.default);
         const { id } = request.params;
         const user = await userRepository.findOneOrFail(id, {
+            select: ['id', 'name', 'email'],
             relations: ['reminders']
         });
+        return response.json(user);
+    },
+    async login(request, response) {
+        const userRepository = typeorm_1.getRepository(User_1.default);
+        const { email, password } = request.params;
+        const user = await userRepository.findOneOrFail({ where: { email, password } });
         return response.json(user);
     },
     async create(request, response) {
@@ -37,6 +45,6 @@ exports.default = {
             id, name, email, password
         };
         await userRepository.save(updatedUser);
-        return response.json(updatedUser);
+        return response.json({ id, name, email });
     }
 };
