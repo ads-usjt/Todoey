@@ -8,6 +8,7 @@ export default {
   async index(request: Request, response: Response){
     const userRepository = getRepository(User);
     const users = await userRepository.find({
+      select: ['id', 'name', 'email'],
       relations: ['reminders']
     })
     return response.json(users);
@@ -18,8 +19,18 @@ export default {
     const { id } = request.params;
 
     const user = await userRepository.findOneOrFail(id, {
+      select: ['id', 'name', 'email'],
       relations: ['reminders']
     });
+
+    return response.json(user);
+  },
+
+  async login(request: Request, response: Response){
+    const userRepository = getRepository(User);
+    const { email, password } = request.params;
+
+    const user = await userRepository.findOneOrFail({ where: { email, password } });
 
     return response.json(user);
   },
@@ -38,7 +49,7 @@ export default {
 
     await userRepository.save(user);
 
-    return response.status(201).json({name,email});
+    return response.status(201).json({ name,email });
   },
 
   async update (request: Request, response: Response){
@@ -54,9 +65,9 @@ export default {
       id, name, email, password
     };
 
-    await userRepository.save(updatedUser);
+    await userRepository.save( updatedUser );
 
-    return response.json(updatedUser);
+    return response.json({ id, name, email });
   }
 
 }

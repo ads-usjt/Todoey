@@ -18,6 +18,7 @@ routes.put('/reminders/:id', ReminderController.update);
 
 routes.get('/users', UserController.index);
 routes.get('/users/:id', UserController.show);
+routes.post('/login', UserController.login);
 routes.post('/users', UserController.create);
 routes.put('/users/:id', UserController.update);
 

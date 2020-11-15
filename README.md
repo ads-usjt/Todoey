@@ -68,6 +68,17 @@ accepted body exemple
   }
 ```
 
+> **POST:** /login
+- send data to login
+
+accepted body exemple
+```Json
+  {
+    "email": "lucasliet@test.com",
+    "password": "123"
+  }
+```
+
 > **PUT:** /users/1
 - update a user by specified id
 
