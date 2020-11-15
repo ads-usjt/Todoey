@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ReminderService } from '../reminder-model/reminder.service';
+import { ReminderService } from '../../services/reminder.service';
 
 @Component({
   selector: 'app-header',

@@ -1,7 +1,7 @@
 import { Router } from '@angular/router'
 import { Injectable, EventEmitter, NgModule } from '@angular/core'
 
-import { User } from './user';
+import { User } from '../../../models/user.entity';
 
 @Injectable() @NgModule()
 export class AuthService {
@@ -12,7 +12,7 @@ export class AuthService {
 
   constructor(private router: Router) { }
 
-  Login(user: User) {
+  Login(user: User): void {
 
     if (user.name === 'usuario@email.com' &&
       user.password === '123456') {
@@ -21,7 +21,7 @@ export class AuthService {
 
       //  this.mostrarMenuEmitter.emit(true);
 
-      this.router.navigate(['/']);
+      this.router.navigate(['home']);
 
     } else {
       this.userAuth = false;
@@ -30,7 +30,7 @@ export class AuthService {
     }
   }
 
-  userTrue() {
+  userTrue(): boolean {
     return this.userAuth;
   }
 

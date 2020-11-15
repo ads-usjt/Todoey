@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
-import { Reminder } from './reminder.entity';
+import { Reminder } from '../models/reminder.entity';
 
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+
+import { baseUrl } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +21,10 @@ export class ReminderService {
 
   private remindersUpdatedList = new Subject<Reminder[]>();
 
-  private BASEURL = 'http://todoey-rest.herokuapp.com';
-
   getReminders(): void {
 
     this.httpClient.get<Reminder[]>(
-      `${this.BASEURL}/reminders`
+      `${baseUrl}/reminders`
     )
       .pipe(map(reminders => reminders.map(reminder => {
         return {
@@ -40,7 +40,7 @@ export class ReminderService {
   }
 
   getReminder(id: string) {
-    return this.httpClient.get<Reminder>(`${this.BASEURL}/reminders/${id}`);
+    return this.httpClient.get<Reminder>(`${baseUrl}/reminders/${id}`);
   }
 
   addReminder(title: string, deadline: number, body: string): void {
@@ -49,7 +49,7 @@ export class ReminderService {
     const reminder: Reminder = { user_id: 1, title, deadline, body };
 
     this.httpClient.post<Reminder>(
-      `${this.BASEURL}/reminders`,
+      `${baseUrl}/reminders`,
       reminder
     )
       .subscribe(reminder => {
@@ -61,7 +61,7 @@ export class ReminderService {
   }
 
   removeReminder(id: number): void {
-    this.httpClient.delete(`${this.BASEURL}/reminders/${id}`)
+    this.httpClient.delete(`${baseUrl}/reminders/${id}`)
       .subscribe(() => {
         this.reminders = this.reminders.filter((rem) => {
           return rem.id !== id
@@ -77,7 +77,7 @@ export class ReminderService {
     const reminder: Reminder = { user_id: 1, title, deadline, body, id };
 
     this.httpClient.put<Reminder>(
-      `${this.BASEURL}/reminders/${id}`,
+      `${baseUrl}/reminders/${id}`,
       reminder
     ).subscribe(reminder => {
       const copia = [...this.reminders];

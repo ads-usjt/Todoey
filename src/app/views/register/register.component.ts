@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Register } from '../register-model/register'
+import { Register } from '../../models/register.entity'
 
 
 @Component({

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
-import { ReminderService } from '../reminder-model/reminder.service';
+import { ReminderService } from '../../services/reminder.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Reminder } from '../reminder-model/reminder.entity';
+import { Reminder } from '../../models/reminder.entity';
 
 @Component({
   selector: 'app-home',

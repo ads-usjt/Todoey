@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { IconsModule } from './icons/icons.module';
 import { MatInputModule } from '@angular/material/input';
@@ -10,19 +11,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { HeaderComponent } from './header/header.component';
-import { ReminderCardComponent } from './reminder-card/reminder-card.component';
-import { LoginComponent } from './login/login.component';
-import { AuthService } from './login-model/auth.service';
-import { RegisterComponent } from './register/register.component';
-import { HomeComponent } from './home/home.component';
-import { httpInterceptorProviders } from './http-interceptors';
+import { HeaderComponent } from './components/header/header.component';
+import { ReminderComponent } from './components/reminder/reminder.component';
+
+import { LoginComponent } from './views/login/login.component';
+import { RegisterComponent } from './views/register/register.component';
+import { HomeComponent } from './views/home/home.component';
+
+import { AuthService } from './services/auth/account/auth.service';
+import { httpInterceptorProviders } from './services/auth/http-interceptors';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { httpInterceptorProviders } from './http-interceptors';
     AppComponent,
     HeaderComponent,
     LoginComponent,
-    ReminderCardComponent,
+    ReminderComponent,
     LoginComponent,
     RegisterComponent,
     HomeComponent

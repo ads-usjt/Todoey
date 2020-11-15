@@ -4,28 +4,28 @@
   <mat-card>
     <fieldset class="row">
       <mat-form-field class="col-12 col-md-6">
-        <input type="text" matInput placeholder="Name" [(ngModel)]="name" />
+        <input type="text" matInput placeholder="Name" [(ngModel)]="register.name" />
       </mat-form-field>
       <mat-form-field class="col-12 col-md-6">
-        <input type="text" matInput placeholder="CPF" [(ngModel)]="cpf" />
-      </mat-form-field>
-    </fieldset>
-
-    <fieldset class="row">
-      <mat-form-field class="col-12 col-md-6">
-        <input type="date" matInput placeholder="Data de Nascimento" [(ngModel)]="date" />
-      </mat-form-field>
-      <mat-form-field class="col-12 col-md-6">
-        <input type="email" matInput placeholder="E-mail" [(ngModel)]="email" />
+        <input type="text" matInput placeholder="CPF" [(ngModel)]="register.cpf" />
       </mat-form-field>
     </fieldset>
 
     <fieldset class="row">
       <mat-form-field class="col-12 col-md-6">
-        <input type="tel" matInput placeholder="Telefone" [(ngModel)]="telephone" />
+        <input type="date" matInput placeholder="Data de Nascimento" [(ngModel)]="register.date" />
       </mat-form-field>
       <mat-form-field class="col-12 col-md-6">
-        <input type="text" matInput placeholder="Senha" [(ngModel)]="password" />
+        <input type="email" matInput placeholder="E-mail" [(ngModel)]="register.email" />
+      </mat-form-field>
+    </fieldset>
+
+    <fieldset class="row">
+      <mat-form-field class="col-12 col-md-6">
+        <input type="tel" matInput placeholder="Telefone" [(ngModel)]="register.telephone" />
+      </mat-form-field>
+      <mat-form-field class="col-12 col-md-6">
+        <input type="text" matInput placeholder="Senha" [(ngModel)]="register.password" />
       </mat-form-field>
     </fieldset>
 

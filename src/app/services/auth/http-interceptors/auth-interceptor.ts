@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AccountService } from '../account/shared/account.service';
+import { AccountService } from '../account/account.service';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
