@@ -1,35 +1,16 @@
-<main id="signup-body" class="container">
+<main id="signup-main">
   <h1>Sign Up</h1>
 
-  <mat-card>
-    <fieldset class="row">
-      <mat-form-field class="col-12 col-md-6">
-        <input type="text" matInput placeholder="Name" [(ngModel)]="register.name" />
-      </mat-form-field>
-      <mat-form-field class="col-12 col-md-6">
-        <input type="text" matInput placeholder="CPF" [(ngModel)]="register.cpf" />
-      </mat-form-field>
-    </fieldset>
-
-    <fieldset class="row">
-      <mat-form-field class="col-12 col-md-6">
-        <input type="date" matInput placeholder="Data de Nascimento" [(ngModel)]="register.date" />
-      </mat-form-field>
-      <mat-form-field class="col-12 col-md-6">
-        <input type="email" matInput placeholder="E-mail" [(ngModel)]="register.email" />
-      </mat-form-field>
-    </fieldset>
-
-    <fieldset class="row">
-      <mat-form-field class="col-12 col-md-6">
-        <input type="tel" matInput placeholder="Telefone" [(ngModel)]="register.telephone" />
-      </mat-form-field>
-      <mat-form-field class="col-12 col-md-6">
-        <input type="text" matInput placeholder="Senha" [(ngModel)]="register.password" />
-      </mat-form-field>
-    </fieldset>
-
-    <button color="primary" mat-raised-button>Cadastrar</button>
-    <!-- <button color="primary" mat-raised-button (click)="onAddRegister()">Cadastrar</button> -->
+  <mat-card id="signup-body" class="col-12 col-sm-6">
+    <mat-form-field>
+      <input type="text" matInput placeholder="Name" [(ngModel)]="user.name" />
+    </mat-form-field>
+    <mat-form-field>
+      <input type="password" matInput placeholder="Password" [(ngModel)]="user.password" />
+    </mat-form-field>
+    <mat-form-field>
+      <input type="email" matInput placeholder="E-mail" [(ngModel)]="user.email" />
+    </mat-form-field>
+    <button color="primary" mat-raised-button (click)="onSubmit()">Send</button>
   </mat-card>
 </main>

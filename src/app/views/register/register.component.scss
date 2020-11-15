@@ -4,7 +4,9 @@
   flex-direction: column;
 }
 
-#signup-body {
+#signup-main {
+  display:flex;
+  flex-direction: column;
   flex: 1;
 
   h1 {
@@ -14,10 +16,13 @@
   }
 
   mat-card {
-    border-radius: 50px;
-    padding: 2rem;
+    flex: 1;
+    background-color: white;
+    border-radius: 50px 50px 0 0;
+    padding: 3rem;
     display: flex;
     flex-direction: column;
+    margin: auto;
 
     button {
       background-color: #3ee4d9;

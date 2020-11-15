@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { ReminderService } from '../../services/reminder.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Reminder } from '../../models/reminder.entity';
@@ -11,20 +11,13 @@ import { Reminder } from '../../models/reminder.entity';
 })
 export class HomeComponent implements OnInit {
 
-  title = 'Todoey';
-  showForm = false
-
-  private modo: string = "criar";
-  // private idCliente: string;
-  // public cliente: Cliente;
-  // public estaCarregando: boolean = false;
-  public form: FormGroup;
-
   constructor(
     public reminderService: ReminderService,
     public route: ActivatedRoute
-  ) { }
+  ){}
 
+  private modo: string = "criar";
+  showForm = false;
   id: string;
   reminder: Reminder;
 
@@ -34,13 +27,8 @@ export class HomeComponent implements OnInit {
         this.modo = 'editar';
         this.id = paramMap.get('id');
         this.reminderService.getReminder(this.id).subscribe(reminder => {
-          this.reminder = {
-            id: reminder.id,
-            title: reminder.title,
-            deadline: reminder.deadline,
-            insertedDate: reminder.insertedDate,
-            body: reminder.body
-          }
+          const { id, title, deadline, insertedDate, body } = reminder;
+          this.reminder = { id, title, deadline, insertedDate, body };
         });
       } else {
         this.modo = 'criar';
@@ -49,29 +37,22 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  showDivFunction(show = false) {
-    this.showForm = show
+  showDivFunction(show = false): void {
+    this.showForm = show;
   }
 
-  onAddReminder(form: NgForm) {
+  onAddReminder(form: NgForm): void {
     if (form.invalid) return;
 
     if (this.modo === 'criar') {
       this.reminderService.addReminder(
         form.value.title,
         new Date(form.value.deadline).getTime(),
-        form.value.body
+        form.value.body,
       );
-      this.showDivFunction()
+      this.showDivFunction();
+    } else {
+      // TODO: editar
     }
-    // else {
-    //     this.clienteService.atualizarCliente(
-    //       this.id,
-    //       form.value.nome,
-    //       form.value.fone,
-    //       form.value.email,
-    //     );
-    //   }
-    //   form.resetForm();
   }
 }
