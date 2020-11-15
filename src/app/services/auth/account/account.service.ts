@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { baseUrl } from '../../../../environments/environment';
+import { baseUrl } from 'src/environments/environment';
 import jwt_decode from 'jwt-decode';
+import { User } from 'src/app/models/user.entity';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,10 @@ export class AccountService {
 
   constructor(private http: HttpClient) { }
 
-  async login(user: any) {
+  async login(user: User): Promise<boolean> {
+    //TODO: tipar esse result mágico
     const result = await this.http.post<any>(`${baseUrl}/login`, user).toPromise();
+
     if (result && result.access_token) {
       window.localStorage.setItem('token', result.access_token);
       return true;
@@ -20,10 +23,9 @@ export class AccountService {
     return false;
   }
 
-  async createAccount(account: any) {
+  async createAccount(account: User): Promise<User> {
     //TODO verificar a criação de usuario
-    const result = await this.http.post<any>(`${baseUrl}/register`, account).toPromise();
-    return result
+    return await this.http.post<User>(`${baseUrl}/users`, account).toPromise();
   }
 
   // async createAccount(account: any) {
@@ -31,9 +33,8 @@ export class AccountService {
   //   return result;
   // }
 
-  getAuthorizationToken() {
-    const token = window.localStorage.getItem('token');
-    return token;
+  getAuthorizationToken(): string {
+    return window.localStorage.getItem('token');
   }
 
   getTokenExpirationDate(token: string): Date {
@@ -61,7 +62,7 @@ export class AccountService {
     return !(date.valueOf() > new Date().valueOf());
   }
 
-  isUserLoggedIn() {
+  isUserLoggedIn(): boolean {
     const token = this.getAuthorizationToken();
     if (!token) {
       return false;

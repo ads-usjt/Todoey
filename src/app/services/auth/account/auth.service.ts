@@ -1,7 +1,7 @@
 import { Router } from '@angular/router'
 import { Injectable, EventEmitter, NgModule } from '@angular/core'
 
-import { User } from '../../../models/user.entity';
+import { User } from 'src/app/models/user.entity';
 
 @Injectable() @NgModule()
 export class AuthService {
@@ -14,7 +14,7 @@ export class AuthService {
 
   Login(user: User): void {
 
-    if (user.name === 'usuario@email.com' &&
+    if (user.email === 'usuario@email.com' &&
       user.password === '123456') {
 
       this.userAuth = true;
