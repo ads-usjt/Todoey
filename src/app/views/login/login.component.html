@@ -1,25 +1,16 @@
 <main id="login-main">
-  <form (submit)="onSubmit(form)" #form="ngForm">
+  <form (submit)="onSubmit(form)" #form="ngForm" class="login-body col-12 col-md-6 col-lg-4">
     <fieldset>
-      <div class="row">
-        <div class="form-group">
-          <label class="active" for="email">Email:</label>
-          <input type="email" id="email" name="email" class="validate form-control" ngModel #email="ngModel" required />
-        </div>
-      </div>
+      <mat-form-field>
+        <input matInput type="email" name="email" placeholder="E-Mail" ngModel #email="ngModel" required />
+      </mat-form-field>
 
-      <div class="row">
-        <div class="form-group">
-          <label class="active" for="password">Password:</label>
-          <input type="password" id="password" name="password" class="form-control" ngModel #password="ngModel"
-            required />
-        </div>
-      </div>
+      <mat-form-field>
+        <input matInput type="password" name="password" placeholder="Password" ngModel #password="ngModel" required />
+      </mat-form-field>
     </fieldset>
 
-    <div class="login-buttons">
-      <a routerLink="/register">Sign-Up</a>
-      <button class="btn btn-primary" type="submit">Login</button>
-    </div>
+    <button mat-raised-button class="btn btn-block color-out-accent" routerLink="/register">Sign-Up</button>
+    <button mat-raised-button class="btn btn-block color-accent" type="submit">Login</button>
   </form>
 </main>

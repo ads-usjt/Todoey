@@ -1,7 +1,7 @@
 <main id="signup-main">
   <h1>Sign Up</h1>
 
-  <mat-card id="signup-body" class="col-12 col-sm-6">
+  <mat-card id="signup-body" class="col-12 col-md-6 col-lg-4">
     <mat-form-field>
       <input type="text" matInput placeholder="Name" [(ngModel)]="user.name" />
     </mat-form-field>
@@ -11,6 +11,6 @@
     <mat-form-field>
       <input type="email" matInput placeholder="E-mail" [(ngModel)]="user.email" />
     </mat-form-field>
-    <button color="primary" mat-raised-button (click)="onSubmit()">Send</button>
+    <button mat-raised-button (click)="onSubmit()">Send</button>
   </mat-card>
 </main>
