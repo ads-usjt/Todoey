@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AccountService } from '../account/account.service';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse } from '@angular/common/http';
-import { throwError } from 'rxjs';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse, HttpEvent } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable()
@@ -11,7 +11,7 @@ export class AuthInterceptor implements HttpInterceptor {
     private accountService: AccountService
   ) { }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler) {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     const token = this.accountService.getAuthorizationToken();
     let request: HttpRequest<any> = req;
@@ -21,7 +21,7 @@ export class AuthInterceptor implements HttpInterceptor {
       // Faço o clone para conseguir mudar as propriedades
       // Passo o token de autenticação no header
       request = req.clone({
-        headers: req.headers.set('Authorization', `Bearer ${token}`)
+        headers: req.headers.set('Authorization', `Bearer ${token}`),
       });
     }
 
@@ -32,7 +32,7 @@ export class AuthInterceptor implements HttpInterceptor {
       );
   }
 
-  private handleError(error: HttpErrorResponse) {
+  private handleError(error: HttpErrorResponse): Observable<never> {
     if (error.error instanceof ErrorEvent) {
       // Erro de client-side ou de rede
       console.error('Ocorreu um erro:', error.error.message);

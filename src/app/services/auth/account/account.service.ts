@@ -5,14 +5,14 @@ import jwt_decode from 'jwt-decode';
 import { User } from 'src/app/models/user.entity';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AccountService {
 
   constructor(private http: HttpClient) { }
 
   async login(user: User): Promise<boolean> {
-    //TODO: tipar esse result mágico
+    // TODO: tipar esse result mágico
     const result = await this.http.post<any>(`${baseUrl}/login`, user).toPromise();
 
     if (result && result.access_token) {
@@ -24,7 +24,7 @@ export class AccountService {
   }
 
   async createAccount(account: User): Promise<User> {
-    //TODO verificar a criação de usuario
+    // TODO verificar a criação de usuario
     return await this.http.post<User>(`${baseUrl}/users`, account).toPromise();
   }
 

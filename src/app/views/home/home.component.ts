@@ -7,7 +7,7 @@ import { Reminder } from '../../models/reminder.entity';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
 
@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
     public route: ActivatedRoute
   ){}
 
-  private modo: string = "criar";
+  private modo = 'criar';
   showForm = false;
   id: string;
   reminder: Reminder;
@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
   }
 
   onAddReminder(form: NgForm): void {
-    if (form.invalid) return;
+    if (form.invalid) { return; }
 
     if (this.modo === 'criar') {
       this.reminderService.addReminder(

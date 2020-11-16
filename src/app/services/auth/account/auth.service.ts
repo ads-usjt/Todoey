@@ -1,14 +1,14 @@
-import { Router } from '@angular/router'
-import { Injectable, EventEmitter, NgModule } from '@angular/core'
+import { Router } from '@angular/router';
+import { Injectable, EventEmitter, NgModule } from '@angular/core';
 
 import { User } from 'src/app/models/user.entity';
 
 @Injectable() @NgModule()
 export class AuthService {
 
-  private userAuth: boolean = false;
+  private userAuth = false;
 
-  //mostrarMenuEmitter = new EventEmitter<boolean>();
+  // mostrarMenuEmitter = new EventEmitter<boolean>();
 
   constructor(private router: Router) { }
 

@@ -9,15 +9,14 @@ import { Router } from '@angular/router';
 import { baseUrl } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ReminderService {
   private reminders: Array<Reminder> = [];
 
   constructor(
     public httpClient: HttpClient,
-    private router: Router
-  ) { }
+  ){}
 
   private remindersUpdatedList = new Subject<Reminder[]>();
 
@@ -28,8 +27,8 @@ export class ReminderService {
     )
       .pipe(map(reminders => reminders.map(reminder => {
         return {
-          id: reminder.id, ...reminder
-        }
+          id: reminder.id, ...reminder,
+        };
       })
       ))
       .subscribe(reminders => {
@@ -39,13 +38,13 @@ export class ReminderService {
 
   }
 
-  getReminder(id: string) {
+  getReminder(id: string): Observable<Reminder> {
     return this.httpClient.get<Reminder>(`${baseUrl}/reminders/${id}`);
   }
 
   addReminder(title: string, deadline: number, body: string): void {
 
-    //TODO: use real user id
+    // TODO: use real user id
     const reminder: Reminder = { user_id: 1, title, deadline, body };
 
     this.httpClient.post<Reminder>(
@@ -53,7 +52,6 @@ export class ReminderService {
       reminder
     )
       .subscribe(reminder => {
-        console.info(reminder);
         this.reminders.push(reminder);
         this.remindersUpdatedList.next([...this.reminders]);
       });
@@ -64,16 +62,16 @@ export class ReminderService {
     this.httpClient.delete(`${baseUrl}/reminders/${id}`)
       .subscribe(() => {
         this.reminders = this.reminders.filter((rem) => {
-          return rem.id !== id
-        })
+          return rem.id !== id;
+        });
         this.remindersUpdatedList.next([...this.reminders]);
-        alert("ToDo Removed successfully")
+        alert('ToDo Removed successfully');
       });
   }
 
   atualizarCliente(id: number, title: string, deadline: number, body: string): void {
 
-    //TODO: use real user id
+    // TODO: use real user id
     const reminder: Reminder = { user_id: 1, title, deadline, body, id };
 
     this.httpClient.put<Reminder>(

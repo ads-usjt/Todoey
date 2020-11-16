@@ -5,7 +5,7 @@ import { User } from '../../models/user.entity';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
 
@@ -15,11 +15,11 @@ export class RegisterComponent {
 
   user = new User();
 
-  async onSubmit() {
+  async onSubmit(): Promise<void> {
     try {
       const result = await this.accountService.createAccount(this.user);
 
-      //TODO: exibir uma msg amigavel aqui
+      // TODO: exibir uma msg amigavel aqui
       console.log(result);
     } catch (error) {
       console.error(error);

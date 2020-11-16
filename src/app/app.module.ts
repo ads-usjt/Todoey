@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { IconsModule } from './icons/icons.module';
@@ -34,7 +34,7 @@ import { httpInterceptorProviders } from './services/auth/http-interceptors';
     ReminderComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -49,9 +49,9 @@ import { httpInterceptorProviders } from './services/auth/http-interceptors';
     IconsModule,
     BrowserAnimationsModule,
     AuthService,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [httpInterceptorProviders],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
