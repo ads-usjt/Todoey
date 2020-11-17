@@ -12,11 +12,11 @@ export class AccountService {
   constructor(private http: HttpClient) { }
 
   async login(user: User): Promise<boolean> {
-    // TODO: tipar esse result mágico
-    const result = await this.http.post<{ auth: true, token: string }>(`${baseUrl}/login`, user).toPromise();
+    const result = await this.http.post<{ auth: true, token: string, user_id: number }>(`${baseUrl}/login`, user).toPromise();
 
     if (result && result.token) {
       window.localStorage.setItem('token', result.token);
+      window.localStorage.setItem('user_id', String(result.user_id));
       return true;
     }
 
@@ -24,7 +24,6 @@ export class AccountService {
   }
 
   async createAccount(account: User): Promise<User> {
-    // TODO verificar a criação de usuario
     return await this.http.post<User>(`${baseUrl}/users`, account).toPromise();
   }
 

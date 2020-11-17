@@ -15,14 +15,15 @@ export class ReminderService {
 
   constructor(
     public httpClient: HttpClient,
-  ){}
+  ) { }
 
   private remindersUpdatedList = new Subject<Reminder[]>();
 
   getReminders(): void {
-
-    this.httpClient.get<Reminder[]>(
-      `${baseUrl}/reminders`
+    const user_id = Number(window.localStorage.getItem('user_id'))
+    this.httpClient.post<Reminder[]>(
+      `${baseUrl}/reminders`,
+      { user_id }
     )
       .pipe(map(reminders => reminders.map(reminder => {
         return {
@@ -43,11 +44,10 @@ export class ReminderService {
 
   addReminder(title: string, deadline: number, body: string): void {
 
-    // TODO: use real user id
-    const reminder: Reminder = { user_id: 1, title, deadline, body };
+    const reminder: Reminder = { user_id: Number(window.localStorage.getItem('user_id')), title, deadline, body };
 
     this.httpClient.post<Reminder>(
-      `${baseUrl}/reminders`,
+      `${baseUrl}/reminders/add`,
       reminder
     )
       .subscribe(reminder => {
@@ -70,8 +70,7 @@ export class ReminderService {
 
   updateReminder(id: number, title: string, deadline: number, body: string): void {
 
-    // TODO: use real user id
-    const reminder: Reminder = { user_id: 1, title, deadline, body, id };
+    const reminder: Reminder = { user_id: Number(window.localStorage.getItem('user_id')), title, deadline, body, id };
 
     this.httpClient.put<Reminder>(
       `${baseUrl}/reminders/${id}`,
