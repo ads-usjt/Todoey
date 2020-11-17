@@ -77,12 +77,12 @@ export class ReminderService {
       `${baseUrl}/reminders/${id}`,
       reminder
     ).subscribe(reminder => {
-      const copia = [...this.reminders];
-      const indice = copia.findIndex(rmdr => rmdr.id === reminder.id);
+      const copy = [...this.reminders];
+      const indice = copy.findIndex(rmdr => rmdr.id === reminder.id);
 
-      copia[indice] = reminder;
+      copy[indice] = reminder;
 
-      this.reminders = copia;
+      this.reminders = copy;
       this.remindersUpdatedList.next([...this.reminders]);
     });
 
