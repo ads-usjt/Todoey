@@ -23,12 +23,6 @@ exports.default = {
         });
         return response.json(user);
     },
-    async login(request, response) {
-        const userRepository = typeorm_1.getRepository(User_1.default);
-        const { email, password } = request.params;
-        const user = await userRepository.findOneOrFail({ where: { email, password } });
-        return response.json(user);
-    },
     async create(request, response) {
         const userRepository = typeorm_1.getRepository(User_1.default);
         const { name, email, password } = request.body;
