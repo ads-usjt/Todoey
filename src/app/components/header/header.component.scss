@@ -7,22 +7,40 @@
   box-sizing: border-box;
 }
 
+@media screen and (max-width: 406px) {
+  .app-header{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2rem;
+  }
+}
+
 .app-header{
   position: relative;
   text-align: center;
   color: white;
 
-  h1{
-    margin: 4rem 0;
-    font-size: 72px;
+  h1 {
+    flex: 3;
     font-family: 'Sedgwick Ave', cursive;
   }
 
-  i-feather{
-    position: absolute;
-    top: 1rem;
-    right: 2rem;
-    height: 45px;
-    width: 45px;
+
+  @media screen and (min-width: 406px) {
+
+    h1 {
+      margin: 4rem 0;
+      font-size: 72px;
+    }
+
+    i-feather {
+      position: absolute;
+      top: 1rem;
+      right: 2rem;
+      height: 45px;
+      width: 45px;
+    }
   }
 }
