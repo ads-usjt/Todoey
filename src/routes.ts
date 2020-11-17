@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import LoginController from './controllers/LoginController';
 import ReminderController from './controllers/ReminderController';
 import UserController from './controllers/UserController';
 
@@ -19,7 +18,7 @@ routes.put('/reminders/:id', ReminderController.update);
 
 routes.get('/users', UserController.index);
 routes.get('/users/:id', UserController.show);
-routes.post('/login', LoginController.login);
+routes.post('/login', UserController.login);
 routes.post('/users', UserController.create);
 routes.put('/users/:id', UserController.update);
 
