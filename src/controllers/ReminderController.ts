@@ -9,7 +9,7 @@ export default {
   async index(request: Request, response: Response){
     const reminderRepository = getRepository(Reminder);
 
-    const { user_id } = request.body;
+    const { user_id } = request.headers;
 
     const reminders = await reminderRepository.find({
       where: { user: { id: user_id } }
