@@ -35,13 +35,13 @@ export class HomeComponent implements OnInit {
           this.reminder = {
             id,
             title,
-            deadline: DateUtil.toDateISOString(deadline as number),
-            createdAt: DateUtil.toDateISOString(createdAt as number),
+            deadline: DateUtil.toDateISOString(deadline),
+            createdAt: DateUtil.toDateISOString(createdAt),
             body,
           };
         });
 
-        this.showDivFunction(true);
+        this.showSaveReminderForm();
       } else {
         this.modo = 'create';
         this.id = null;
@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  showDivFunction(show = false): void {
+  showSaveReminderForm(show = true): void {
     this.showForm = show;
   }
 
@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit {
         DateUtil.toMilliseconds(form.value.deadline),
         form.value.body,
       );
-      this.showDivFunction();
+      this.showSaveReminderForm(false);
     } else {
       this.reminderService.updateReminder(
         this.id,

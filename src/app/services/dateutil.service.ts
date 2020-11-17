@@ -6,7 +6,7 @@ export default {
   /**
    * @param  date receive the milliseconds since 01/01/1970 and convert to a string in the ISO format (yyyy-MM-dd)
    */
-  toDateISOString : (date: number): string => new Date(date).toISOString().split('T')[0],
+  toDateISOString : (date: number | string): string => new Date(Number(date)).toISOString().split('T')[0],
 
   /**
    * @param  date receive a string in the ISO format (yyyy-MM-dd) and convert to the milliseconds since 01/01/1970
