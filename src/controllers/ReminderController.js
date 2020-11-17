@@ -9,7 +9,7 @@ const User_1 = __importDefault(require("../models/User"));
 exports.default = {
     async index(request, response) {
         const reminderRepository = typeorm_1.getRepository(Reminder_1.default);
-        const { user_id } = request.body;
+        const { user_id } = request.headers;
         const reminders = await reminderRepository.find({
             where: { user: { id: user_id } }
         });
