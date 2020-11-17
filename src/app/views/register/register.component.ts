@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { AccountService } from 'src/app/services/auth/account/account.service';
 import { User } from '../../models/user.entity';
 
@@ -9,7 +10,7 @@ import { User } from '../../models/user.entity';
 })
 export class RegisterComponent {
 
-  constructor(private accountService: AccountService){}
+  constructor(private accountService: AccountService, private router: Router) { }
 
   @Output() registerAdd = new EventEmitter();
 
@@ -19,8 +20,8 @@ export class RegisterComponent {
     try {
       const result = await this.accountService.createAccount(this.user);
 
-      // TODO: exibir uma msg amigavel aqui
-      console.log(result);
+      alert('User created successfully')
+      this.router.navigate(['/login'])
     } catch (error) {
       console.error(error);
     }
