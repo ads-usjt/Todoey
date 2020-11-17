@@ -7,7 +7,7 @@ import { RegisterComponent } from './views/register/register.component';
 import { AuthGuard } from './services/auth/account/auth.guard';
 
 const routes: Routes = [
-
+  { path: '', redirectTo: 'home', pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'edit/:id', component: HomeComponent, canActivate: [AuthGuard] },
   {
