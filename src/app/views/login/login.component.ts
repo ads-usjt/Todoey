@@ -26,10 +26,10 @@ export class LoginComponent {
 
       const result = await this.accountService.login(this.login);
       console.log(`Login done: ${result}`);
-      this.router.navigate(['/home'])
 
+      this.router.navigate(['/home']);
     } catch (error) {
-      alert('Invalid login, try again')
+      alert('Invalid login, try again');
       console.error(`Login Error: ${error}`);
     }
   }

@@ -6,7 +6,6 @@ import { Reminder } from '../models/reminder.entity';
 import { map } from 'rxjs/operators';
 
 import { baseUrl } from '../../environments/environment';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -21,10 +20,9 @@ export class ReminderService {
   private remindersUpdatedList = new Subject<Reminder[]>();
 
   getReminders(): void {
-    const user_id = Number(window.localStorage.getItem('user_id'))
     this.httpClient.post<Reminder[]>(
       `${baseUrl}/reminders`,
-      { user_id }
+      { user_id: Number(window.localStorage.getItem('user_id')) },
     )
       .pipe(map(reminders => reminders.map(reminder => {
         return {

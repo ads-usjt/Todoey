@@ -20,8 +20,8 @@ export class RegisterComponent {
     try {
       const result = await this.accountService.createAccount(this.user);
 
-      alert('User created successfully')
-      this.router.navigate(['/login'])
+      alert('User created successfully');
+      this.router.navigate(['/login']);
     } catch (error) {
       console.error(error);
     }

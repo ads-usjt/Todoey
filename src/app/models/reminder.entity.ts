@@ -1,8 +1,8 @@
 export interface Reminder {
   id?: number;
   title: string;
-  deadline: number | Date;
-  createdAt?: number | Date;
+  deadline: number | string;
+  createdAt?: number | string;
   body: string;
   user_id?: number;
 }

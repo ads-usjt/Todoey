@@ -4,6 +4,8 @@ import { ReminderService } from '../../services/reminder.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Reminder } from '../../models/reminder.entity';
 
+import DateUtil from 'src/app/services/dateutil.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,8 +21,8 @@ export class HomeComponent implements OnInit {
 
   private modo = 'create';
   showForm = false;
-  id: number;
-  reminder;
+  private id: number;
+  reminder: Reminder;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -28,9 +30,15 @@ export class HomeComponent implements OnInit {
         this.modo = 'edit';
         this.id = Number(paramMap.get('id'));
 
-        this.reminderService.getReminder(this.id).subscribe(reminder => {
+        this.reminderService.getReminder(this.id).subscribe((reminder: Reminder) => {
           const { id, title, deadline, createdAt, body } = reminder;
-          this.reminder = { id, title, deadline: new Date(Number(deadline)).toISOString().split("T")[0], createdAt: new Date(Number(createdAt)).toISOString().split("T")[0], body };
+          this.reminder = {
+            id,
+            title,
+            deadline: DateUtil.toDateISOString(deadline as number),
+            createdAt: DateUtil.toDateISOString(createdAt as number),
+            body,
+          };
         });
 
         this.showDivFunction(true);
@@ -51,7 +59,7 @@ export class HomeComponent implements OnInit {
     if (this.modo === 'create') {
       this.reminderService.addReminder(
         form.value.title,
-        new Date(form.value.deadline).getTime(),
+        DateUtil.toMilliseconds(form.value.deadline),
         form.value.body,
       );
       this.showDivFunction();
@@ -59,10 +67,10 @@ export class HomeComponent implements OnInit {
       this.reminderService.updateReminder(
         this.id,
         form.value.title,
-        new Date(form.value.deadline).getTime(),
+        DateUtil.toMilliseconds(form.value.deadline),
         form.value.body,
-      )
-      this.router.navigate(["/home"])
+      );
+      this.router.navigate(['/home']);
     }
   }
 }
