@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const User_1 = __importDefault(require("../models/User"));
 exports.default = {
     async index(request, response) {
@@ -40,5 +41,18 @@ exports.default = {
         };
         await userRepository.save(updatedUser);
         return response.json({ id, name, email });
+    },
+    async login(request, response) {
+        const userRepository = typeorm_1.getRepository(User_1.default);
+        const { email, password } = request.body;
+        const user = await userRepository.findOne({ where: { email, password } });
+        if (user) {
+            const { id } = user;
+            const token = jsonwebtoken_1.default.sign({ id }, process.env.SECRET, {
+                expiresIn: 3000
+            });
+            return response.json({ auth: true, token: token });
+        }
+        return response.status(500).json({ message: 'Invalid Login!' });
     }
 };
