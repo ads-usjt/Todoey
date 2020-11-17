@@ -10,9 +10,9 @@ routes.get('/', (request, response) => {
   })
 })
 
-routes.get('/reminders', ReminderController.index);
+routes.post('/reminders', ReminderController.index);
 routes.get('/reminders/:id', ReminderController.show);
-routes.post('/reminders', ReminderController.create);
+routes.post('/reminders/add', ReminderController.create);
 routes.delete('/reminders/:id', ReminderController.delete);
 routes.put('/reminders/:id', ReminderController.update);
 

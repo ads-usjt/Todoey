@@ -74,11 +74,11 @@ export default {
     if(user){
 
       const { id } = user;
-      const token = jwt.sign({ id }, process.env.SECRET as string, {
+      const token = jwt.sign({ id }, process.env.SECRET as string || 'vcnxzjgkherwioçgjawefkltçgn34uioqph', {
         expiresIn: 3000
       });
 
-      return response.json({ auth: true, token: token });
+      return response.json({ auth: true, user_id: id, token: token });
     }
     return response.status(500).json({message: 'Invalid Login!'});
 

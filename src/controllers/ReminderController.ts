@@ -8,9 +8,13 @@ export default {
 
   async index(request: Request, response: Response){
     const reminderRepository = getRepository(Reminder);
+
+    const { user_id } = request.body;
+
     const reminders = await reminderRepository.find({
-      relations: ['user']
+      where: { user_id }
     })
+
     return response.json(reminders);
   },
 
@@ -18,7 +22,7 @@ export default {
     const reminderRepository = getRepository(Reminder);
     const { id } = request.params;
 
-    const reminder = await reminderRepository.findOneOrFail(id, {
+    const reminder: Reminder = await reminderRepository.findOneOrFail(id, {
       relations: ['user']
     });
 
@@ -52,7 +56,7 @@ export default {
     const reminderRepository = getRepository(Reminder);
     const { id } = request.params;
 
-    const reminder = await reminderRepository.findOneOrFail(id, {
+    const reminder: Reminder = await reminderRepository.findOneOrFail(id, {
       relations: ['user']
     });
 
