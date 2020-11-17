@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ReminderService } from '../../services/reminder.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Reminder } from '../../models/reminder.entity';
 
 @Component({
@@ -13,23 +13,24 @@ export class HomeComponent implements OnInit {
 
   constructor(
     public reminderService: ReminderService,
-    public route: ActivatedRoute
-  ){}
+    public route: ActivatedRoute,
+    public router: Router
+  ) { }
 
   private modo = 'create';
   showForm = false;
   id: number;
-  reminder: Reminder;
+  reminder;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('id')) {
         this.modo = 'edit';
-        this.id = Number( paramMap.get('id') );
+        this.id = Number(paramMap.get('id'));
 
         this.reminderService.getReminder(this.id).subscribe(reminder => {
-          const { id, title, deadline, insertedDate, body } = reminder;
-          this.reminder = { id, title, deadline: new Date(deadline), insertedDate: new Date(insertedDate), body };
+          const { id, title, deadline, createdAt, body } = reminder;
+          this.reminder = { id, title, deadline: new Date(Number(deadline)).toISOString().split("T")[0], createdAt: new Date(Number(createdAt)).toISOString().split("T")[0], body };
         });
 
         this.showDivFunction(true);
@@ -61,6 +62,7 @@ export class HomeComponent implements OnInit {
         new Date(form.value.deadline).getTime(),
         form.value.body,
       )
+      this.router.navigate(["/home"])
     }
   }
 }

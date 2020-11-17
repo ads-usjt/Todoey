@@ -6,6 +6,7 @@ import { Reminder } from '../models/reminder.entity';
 import { map } from 'rxjs/operators';
 
 import { baseUrl } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
