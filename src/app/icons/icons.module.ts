@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 
 import { FeatherModule } from 'angular-feather';
-import { Edit2, Trash2, Github } from 'angular-feather/icons';
+import { Edit2, Trash2, Github, LogOut } from 'angular-feather/icons';
 
 const icons = {
+  LogOut,
   Edit2,
   Trash2,
   Github,

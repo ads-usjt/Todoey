@@ -8,12 +8,21 @@
 }
 
 .app-header{
-  padding: 5rem 0;
+  position: relative;
   text-align: center;
+  color: white;
 
   h1{
-    color: white;
+    margin: 4rem 0;
     font-size: 72px;
     font-family: 'Sedgwick Ave', cursive;
+  }
+
+  i-feather{
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    height: 45px;
+    width: 45px;
   }
 }

@@ -18,10 +18,9 @@ export class RegisterComponent {
 
   async onSubmit(): Promise<void> {
     try {
-      const result = await this.accountService.createAccount(this.user);
+      await this.accountService.createAccount(this.user);
 
       alert('User created successfully');
-      this.router.navigate(['/login']);
     } catch (error) {
       console.error(error);
     }

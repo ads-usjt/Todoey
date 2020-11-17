@@ -11,11 +11,11 @@
         <div class="d-flex justify-content-between align-items-center">
           <div class="d-flex flex-column">
             <label class="m-0">Deadline:</label>
-            <p class="m-0">{{reminder.deadline | date: "EEE dd/MM/yyyy hh:mm"}}</p>
+            <p class="m-0">{{reminder.deadline | date: "EEE dd/MM/yyyy": "GMT-3"}}</p>
           </div>
           <div>
-            <i-feather name="edit-2" class="someclass" [routerLink]="['/edit', reminder.id]"></i-feather>
-            <i-feather name="trash-2" class="ml-2 someclass" (click)="onDelete(reminder.id)"></i-feather>
+            <i-feather name="edit-2" [routerLink]="['/edit', reminder.id]"></i-feather>
+            <i-feather name="trash-2" class="ml-2" (click)="onDelete(reminder.id)"></i-feather>
           </div>
         </div>
       </div>

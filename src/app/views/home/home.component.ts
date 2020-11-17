@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ReminderService } from '../../services/reminder.service';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Reminder } from '../../models/reminder.entity';
 
 import DateUtil from 'src/app/services/dateutil.service';
@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
   constructor(
     public reminderService: ReminderService,
     public route: ActivatedRoute,
-    public router: Router
   ) { }
 
   private modo = 'create';
@@ -70,7 +69,6 @@ export class HomeComponent implements OnInit {
         DateUtil.toMilliseconds(form.value.deadline),
         form.value.body,
       );
-      this.router.navigate(['/home']);
     }
   }
 }

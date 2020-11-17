@@ -6,6 +6,7 @@ import { Reminder } from '../models/reminder.entity';
 import { map } from 'rxjs/operators';
 
 import { baseUrl } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,8 @@ export class ReminderService {
   private reminders: Array<Reminder> = [];
 
   constructor(
-    public httpClient: HttpClient,
+    private httpClient: HttpClient,
+    private router: Router,
   ) { }
 
   private remindersUpdatedList = new Subject<Reminder[]>();
@@ -83,7 +85,7 @@ export class ReminderService {
       this.reminders = copy;
       this.remindersUpdatedList.next([...this.reminders]);
     });
-
+    this.router.navigate(['/home']);
   }
 
   getReminderListObservable(): Observable<Reminder[]> {

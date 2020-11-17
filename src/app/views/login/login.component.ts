@@ -1,33 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AccountService } from '../../services/auth/account/account.service';
+import { HttpClient } from '@angular/common/http';
 
-import { User } from '../../models/user.entity';
+import { AccountService } from 'src/app/services/auth/account/account.service';
+
+import { User } from 'src/app/models/user.entity';
 import { Router } from '@angular/router';
+
+import { baseUrl } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   login = new User();
 
   constructor(
     private accountService: AccountService,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) { }
+
+  ngOnInit(): void {
+    this.http.get(baseUrl);
+  }
 
   async onSubmit(form: NgForm): Promise<void> {
     try {
       const { email, password } = form.value;
       this.login = { email, password };
 
-      const result = await this.accountService.login(this.login);
-      console.log(`Login done: ${result}`);
+      await this.accountService.login(this.login);
 
-      this.router.navigate(['/home']);
     } catch (error) {
       alert('Invalid login, try again');
       console.error(`Login Error: ${error}`);

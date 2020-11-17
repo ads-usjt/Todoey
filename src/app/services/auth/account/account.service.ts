@@ -3,28 +3,33 @@ import { Injectable } from '@angular/core';
 import { baseUrl } from 'src/environments/environment';
 import jwt_decode from 'jwt-decode';
 import { User } from 'src/app/models/user.entity';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
-  async login(user: User): Promise<boolean> {
-    const result = await this.http.post<{ auth: true, token: string, user_id: number }>(`${baseUrl}/login`, user).toPromise();
+  async login(user: User): Promise<void> {
+    const { auth, token, user_id } = await this.http.post<Token>(`${baseUrl}/login`, user).toPromise();
 
-    if (result && result.token) {
-      window.localStorage.setItem('token', result.token);
-      window.localStorage.setItem('user_id', String(result.user_id));
-      return true;
+    if (auth && token) {
+      window.localStorage.setItem('token', token);
+      window.localStorage.setItem('user_id', String(user_id));
+      this.router.navigate(['/home']);
     }
-
-    return false;
   }
 
-  async createAccount(account: User): Promise<User> {
-    return await this.http.post<User>(`${baseUrl}/users`, account).toPromise();
+  logout(): void {
+    window.localStorage.clear();
+    this.router.navigate(['/login']);
+  }
+
+  async createAccount(account: User): Promise<void> {
+    await this.http.post<User>(`${baseUrl}/users`, account).toPromise();
+    this.router.navigate(['/login']);
   }
 
   getAuthorizationToken(): string {
@@ -66,4 +71,10 @@ export class AccountService {
 
     return true;
   }
+}
+
+interface Token {
+  auth: true;
+  token: string;
+  user_id: number;
 }

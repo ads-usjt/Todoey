@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AccountService } from 'src/app/services/auth/account/account.service';
 import { ReminderService } from '../../services/reminder.service';
 
 @Component({
@@ -9,7 +10,10 @@ import { ReminderService } from '../../services/reminder.service';
 })
 export class HeaderComponent {
 
-  constructor(public reminderService: ReminderService) { }
+  constructor(
+    private reminderService: ReminderService,
+    private accountService: AccountService,
+  ){}
 
   onAddReminder(form: NgForm): void {
     if (form.invalid) { return; }
@@ -19,5 +23,9 @@ export class HeaderComponent {
       form.value.body,
     );
     form.resetForm();
+  }
+
+  logout(): void {
+    this.accountService.logout();
   }
 }
