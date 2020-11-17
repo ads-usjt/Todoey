@@ -22,7 +22,6 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { HomeComponent } from './views/home/home.component';
 
-import { AuthService } from './services/auth/account/auth.service';
 import { httpInterceptorProviders } from './services/auth/http-interceptors';
 
 
@@ -48,7 +47,6 @@ import { httpInterceptorProviders } from './services/auth/http-interceptors';
     MatExpansionModule,
     IconsModule,
     BrowserAnimationsModule,
-    AuthService,
     ReactiveFormsModule,
   ],
   providers: [httpInterceptorProviders],
