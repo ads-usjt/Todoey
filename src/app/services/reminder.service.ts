@@ -8,6 +8,8 @@ import { map } from 'rxjs/operators';
 import { baseUrl } from '../../environments/environment';
 import { Router } from '@angular/router';
 
+import DateUtil from 'src/app/services/dateutil.service';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -22,9 +24,9 @@ export class ReminderService {
   private remindersUpdatedList = new Subject<Reminder[]>();
 
   getReminders(): void {
-    this.httpClient.post<Reminder[]>(
+    this.httpClient.get<Reminder[]>(
       `${baseUrl}/reminders`,
-      { user_id: Number(window.localStorage.getItem('user_id')) },
+      { headers: { 'user_id': window.localStorage.getItem('user_id') } }
     )
       .pipe(map(reminders => reminders.map(reminder => {
         return {
@@ -39,16 +41,27 @@ export class ReminderService {
 
   }
 
-  getReminder(id: number): Observable<Reminder> {
-    return this.httpClient.get<Reminder>(`${baseUrl}/reminders/${id}`);
-  }
+  async getReminder(id: number): Promise<Reminder> {
+    const reminder = await this.httpClient.get<Reminder>(`${baseUrl}/reminders/${id}`).toPromise();
+    const parsedReminder: Reminder = {
+      ...reminder,
+      deadline: DateUtil.toDateISOString(reminder.deadline),
+      createdAt: DateUtil.toDateISOString(reminder.createdAt),
+    }
+    return parsedReminder;
+  }1
 
-  addReminder(title: string, deadline: number, body: string): void {
+  addReminder(title: string, deadline: string, body: string): void {
 
-    const reminder: Reminder = { user_id: Number(window.localStorage.getItem('user_id')), title, deadline, body };
+    const reminder: Reminder = {
+      user_id: Number(window.localStorage.getItem('user_id')),
+      title,
+      deadline: DateUtil.toMilliseconds(deadline),
+      body,
+     };
 
     this.httpClient.post<Reminder>(
-      `${baseUrl}/reminders/add`,
+      `${baseUrl}/reminders`,
       reminder
     )
       .subscribe(reminder => {
@@ -59,6 +72,7 @@ export class ReminderService {
   }
 
   removeReminder(id: number): void {
+
     this.httpClient.delete(`${baseUrl}/reminders/${id}`)
       .subscribe(() => {
         this.reminders = this.reminders.filter((rem) => {
@@ -67,11 +81,18 @@ export class ReminderService {
         this.remindersUpdatedList.next([...this.reminders]);
         alert('ToDo Removed successfully');
       });
+
   }
 
-  updateReminder(id: number, title: string, deadline: number, body: string): void {
+  updateReminder(id: number, title: string, deadline: string, body: string): void {
 
-    const reminder: Reminder = { user_id: Number(window.localStorage.getItem('user_id')), title, deadline, body, id };
+    const reminder: Reminder = {
+      id,
+      user_id: Number(window.localStorage.getItem('user_id')),
+      title,
+      deadline: DateUtil.toMilliseconds(deadline),
+      body,
+     };
 
     this.httpClient.put<Reminder>(
       `${baseUrl}/reminders/${id}`,
@@ -91,4 +112,5 @@ export class ReminderService {
   getReminderListObservable(): Observable<Reminder[]> {
     return this.remindersUpdatedList.asObservable();
   }
+
 }

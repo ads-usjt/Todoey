@@ -4,7 +4,6 @@ import { ReminderService } from '../../services/reminder.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Reminder } from '../../models/reminder.entity';
 
-import DateUtil from 'src/app/services/dateutil.service';
 
 @Component({
   selector: 'app-home',
@@ -29,16 +28,9 @@ export class HomeComponent implements OnInit {
         this.modo = 'edit';
         this.id = Number(paramMap.get('id'));
 
-        this.reminderService.getReminder(this.id).subscribe((reminder: Reminder) => {
-          const { id, title, deadline, createdAt, body } = reminder;
-          this.reminder = {
-            id,
-            title,
-            deadline: DateUtil.toDateISOString(deadline),
-            createdAt: DateUtil.toDateISOString(createdAt),
-            body,
-          };
-        });
+        this.reminderService.getReminder(this.id)
+          .then(reminder => this.reminder = reminder);
+
 
         this.showSaveReminderForm();
       } else {
@@ -58,7 +50,7 @@ export class HomeComponent implements OnInit {
     if (this.modo === 'create') {
       this.reminderService.addReminder(
         form.value.title,
-        DateUtil.toMilliseconds(form.value.deadline),
+        form.value.deadline,
         form.value.body,
       );
       this.showSaveReminderForm(false);
@@ -66,7 +58,7 @@ export class HomeComponent implements OnInit {
       this.reminderService.updateReminder(
         this.id,
         form.value.title,
-        DateUtil.toMilliseconds(form.value.deadline),
+        form.value.deadline,
         form.value.body,
       );
     }
