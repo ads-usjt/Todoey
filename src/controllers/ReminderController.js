@@ -9,8 +9,9 @@ const User_1 = __importDefault(require("../models/User"));
 exports.default = {
     async index(request, response) {
         const reminderRepository = typeorm_1.getRepository(Reminder_1.default);
+        const { user_id } = request.body;
         const reminders = await reminderRepository.find({
-            relations: ['user']
+            where: { user_id }
         });
         return response.json(reminders);
     },

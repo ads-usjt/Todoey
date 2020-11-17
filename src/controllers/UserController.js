@@ -48,10 +48,10 @@ exports.default = {
         const user = await userRepository.findOne({ where: { email, password } });
         if (user) {
             const { id } = user;
-            const token = jsonwebtoken_1.default.sign({ id }, process.env.SECRET, {
+            const token = jsonwebtoken_1.default.sign({ id }, process.env.SECRET || 'vcnxzjgkherwioçgjawefkltçgn34uioqph', {
                 expiresIn: 3000
             });
-            return response.json({ auth: true, token: token });
+            return response.json({ auth: true, user_id: id, token: token });
         }
         return response.status(500).json({ message: 'Invalid Login!' });
     }

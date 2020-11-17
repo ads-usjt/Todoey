@@ -12,9 +12,9 @@ routes.get('/', (request, response) => {
         welcome_message: 'Todoey REST API: https://ads-usjt.github.io/Todoey'
     });
 });
-routes.get('/reminders', ReminderController_1.default.index);
+routes.post('/reminders', ReminderController_1.default.index);
 routes.get('/reminders/:id', ReminderController_1.default.show);
-routes.post('/reminders', ReminderController_1.default.create);
+routes.post('/reminders/add', ReminderController_1.default.create);
 routes.delete('/reminders/:id', ReminderController_1.default.delete);
 routes.put('/reminders/:id', ReminderController_1.default.update);
 routes.get('/users', UserController_1.default.index);
