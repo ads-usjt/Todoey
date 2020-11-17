@@ -13,10 +13,10 @@ export class AccountService {
 
   async login(user: User): Promise<boolean> {
     // TODO: tipar esse result mágico
-    const result = await this.http.post<any>(`${baseUrl}/login`, user).toPromise();
+    const result = await this.http.post<{ auth: true, token: string }>(`${baseUrl}/login`, user).toPromise();
 
-    if (result && result.access_token) {
-      window.localStorage.setItem('token', result.access_token);
+    if (result && result.token) {
+      window.localStorage.setItem('token', result.token);
       return true;
     }
 
@@ -27,11 +27,6 @@ export class AccountService {
     // TODO verificar a criação de usuario
     return await this.http.post<User>(`${baseUrl}/users`, account).toPromise();
   }
-
-  // async createAccount(account: any) {
-  //   const result = await this.http.post<any>(`${environment.api}/users`, account).toPromise();
-  //   return result;
-  // }
 
   getAuthorizationToken(): string {
     return window.localStorage.getItem('token');

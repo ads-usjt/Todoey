@@ -15,7 +15,7 @@ export class LoginComponent {
 
   constructor(
     private accountService: AccountService
-  ){}
+  ) { }
 
   async onSubmit(form: NgForm): Promise<void> {
     try {
