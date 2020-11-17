@@ -18,14 +18,14 @@ export class HomeComponent implements OnInit {
 
   private modo = 'criar';
   showForm = false;
-  id: string;
+  id: number;
   reminder: Reminder;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('id')) {
         this.modo = 'editar';
-        this.id = paramMap.get('id');
+        this.id = Number( paramMap.get('id') );
         this.reminderService.getReminder(this.id).subscribe(reminder => {
           const { id, title, deadline, insertedDate, body } = reminder;
           this.reminder = { id, title, deadline, insertedDate, body };
@@ -52,7 +52,12 @@ export class HomeComponent implements OnInit {
       );
       this.showDivFunction();
     } else {
-      // TODO: editar
+      this.reminderService.updateReminder(
+        this.id,
+        form.value.title,
+        new Date(form.value.deadline).getTime(),
+        form.value.body,
+      )
     }
   }
 }

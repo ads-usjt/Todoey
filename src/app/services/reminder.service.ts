@@ -4,7 +4,6 @@ import { Subject, Observable } from 'rxjs';
 import { Reminder } from '../models/reminder.entity';
 
 import { map } from 'rxjs/operators';
-import { Router } from '@angular/router';
 
 import { baseUrl } from '../../environments/environment';
 
@@ -38,7 +37,7 @@ export class ReminderService {
 
   }
 
-  getReminder(id: string): Observable<Reminder> {
+  getReminder(id: number): Observable<Reminder> {
     return this.httpClient.get<Reminder>(`${baseUrl}/reminders/${id}`);
   }
 
@@ -69,7 +68,7 @@ export class ReminderService {
       });
   }
 
-  atualizarCliente(id: number, title: string, deadline: number, body: string): void {
+  updateReminder(id: number, title: string, deadline: number, body: string): void {
 
     // TODO: use real user id
     const reminder: Reminder = { user_id: 1, title, deadline, body, id };
