@@ -12,7 +12,7 @@ export default {
     const { user_id } = request.body;
 
     const reminders = await reminderRepository.find({
-      where: { user_id }
+      where: { user: { id: user_id } }
     })
 
     return response.json(reminders);
