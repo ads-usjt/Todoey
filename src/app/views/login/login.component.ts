@@ -25,7 +25,15 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.http.get(baseUrl);
+    this.http.get(baseUrl).toPromise()
+      .then(
+        ({ welcome_message } : any ) => {
+          return console.table({
+            heroku_awaked: true,
+            message: welcome_message ,
+          });
+        }
+      ).catch(e => console.error(e));
   }
 
   async onSubmit(form: NgForm): Promise<void> {
