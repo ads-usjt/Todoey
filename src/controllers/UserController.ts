@@ -26,15 +26,6 @@ export default {
     return response.json(user);
   },
 
-  async login(request: Request, response: Response){
-    const userRepository = getRepository(User);
-    const { email, password } = request.params;
-
-    const user = await userRepository.findOneOrFail({ where: { email, password } });
-
-    return response.json(user);
-  },
-
   async create (request: Request, response: Response){
     const userRepository = getRepository(User);
     const {
