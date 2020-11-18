@@ -5,6 +5,8 @@ import jwt_decode from 'jwt-decode';
 import { User } from 'src/app/models/user.entity';
 import { Router } from '@angular/router';
 
+import { SessionAuth } from 'src/app/models/sessionauth';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -13,11 +15,10 @@ export class AccountService {
   constructor(private http: HttpClient, private router: Router) { }
 
   async login(user: User): Promise<void> {
-    const { auth, token, user_id } = await this.http.post<Token>(`${baseUrl}/login`, user).toPromise();
+    const session = await this.http.post<SessionAuth>(`${baseUrl}/login`, user).toPromise();
 
-    if (auth && token) {
-      window.localStorage.setItem('token', token);
-      window.localStorage.setItem('user_id', String(user_id));
+    if (session.auth && session.token) {
+      SessionHandler.storageToken(session);
       this.router.navigate(['/home']);
     }
   }
@@ -32,9 +33,7 @@ export class AccountService {
     this.router.navigate(['/login']);
   }
 
-  getAuthorizationToken(): string {
-    return window.localStorage.getItem('token');
-  }
+  getAuthorizationToken = (): string => SessionHandler.getTokenFromStorage().token;
 
   getTokenExpirationDate(token: string): Date {
     const decoded: any = jwt_decode(token);
@@ -63,18 +62,33 @@ export class AccountService {
 
   isUserLoggedIn(): boolean {
     const token = this.getAuthorizationToken();
-    if (!token) {
-      return false;
-    } else if (this.isTokenExpired(token)) {
+    if (!token || this.isTokenExpired(token)) {
       return false;
     }
-
     return true;
   }
 }
 
-interface Token {
-  auth: true;
-  token: string;
-  user_id: number;
-}
+/**
+ * Storage and retrieve session auth data on localStorage
+ * @author Lucas Souza <lucasouliveira@gmail.com>
+ */
+export const SessionHandler = {
+  /**
+   * @param session get session auth data and put on localStorage
+   */
+  storageToken(session: SessionAuth): void {
+    window.localStorage.setItem('session', JSON.stringify(session));
+  },
+  /**
+   * @return get session auth data from localStorage
+   */
+  getTokenFromStorage(): SessionAuth {
+    const session = JSON.parse(window.localStorage.getItem('session'));
+    if (!session) {
+      return { auth: false, token: undefined, user_id: undefined } as SessionAuth;
+    } else {
+      return session;
+    }
+  },
+};

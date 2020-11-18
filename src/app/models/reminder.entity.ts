@@ -1,4 +1,4 @@
-export interface Reminder {
+export class Reminder {
   id?: number;
   title: string;
   deadline: number | string;

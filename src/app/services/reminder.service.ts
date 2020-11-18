@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
-import { Reminder } from '../models/reminder.entity';
+import { Reminder } from 'src/app/models/reminder.entity';
 
 import { map } from 'rxjs/operators';
 
@@ -9,6 +9,7 @@ import { baseUrl } from '../../environments/environment';
 import { Router } from '@angular/router';
 
 import DateUtil from 'src/app/services/dateutil.service';
+import { SessionHandler } from 'src/app/services/auth/account/account.service';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +27,7 @@ export class ReminderService {
   getReminders(): void {
     this.httpClient.get<Reminder[]>(
       `${baseUrl}/reminders`,
-      { headers: { 'user_id': window.localStorage.getItem('user_id') } }
+      { headers: { user_id: String(SessionHandler.getTokenFromStorage().user_id) } }
     )
       .pipe(map(reminders => reminders.map(reminder => {
         return {
@@ -47,14 +48,14 @@ export class ReminderService {
       ...reminder,
       deadline: DateUtil.toDateISOString(reminder.deadline),
       createdAt: DateUtil.toDateISOString(reminder.createdAt),
-    }
+    };
     return parsedReminder;
-  }1
+  }
 
   addReminder(title: string, deadline: string, body: string): void {
 
     const reminder: Reminder = {
-      user_id: Number(window.localStorage.getItem('user_id')),
+      user_id: SessionHandler.getTokenFromStorage().user_id,
       title,
       deadline: DateUtil.toMilliseconds(deadline),
       body,
@@ -88,7 +89,7 @@ export class ReminderService {
 
     const reminder: Reminder = {
       id,
-      user_id: Number(window.localStorage.getItem('user_id')),
+      user_id: SessionHandler.getTokenFromStorage().user_id,
       title,
       deadline: DateUtil.toMilliseconds(deadline),
       body,

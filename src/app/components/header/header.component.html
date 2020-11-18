@@ -1,4 +1,4 @@
 <header class="app-header">
-  <i-feather name="log-out" (click)="logout()"></i-feather>
+  <i-feather name="log-out" (click)="logout()" *ngIf="isUserLogged"></i-feather>
   <h1>Todoey</h1>
 </header>
