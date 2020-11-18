@@ -1,5 +1,5 @@
 <main id="home">
-  <button id="add-reminder" (click)="showSaveReminderForm()">+</button>
+  <button id="add_reminder" (click)="showSaveReminderForm()">+</button>
   <div class="container">
     <div class="form-div" *ngIf="showForm">
       <mat-card>
@@ -7,13 +7,13 @@
           <div class="inputs-container">
             <h3>Save Reminder</h3>
             <fieldset>
-              <div class="mat-card-header">
-                <mat-form-field>
+              <div class="row justify-content-between align-items-center">
+                <mat-form-field class="col-12 col-md-6">
                   <input type="text" matInput placeholder="title" name="title" minlength="3" maxlength="13" ngModel
                     #nome="ngModel" required [ngModel]="reminder?.title" />
                 </mat-form-field>
 
-                <mat-form-field>
+                <mat-form-field class="col-12 col-md-6">
                   <input type="date" matInput placeholder="deadline" name="deadline" ngModel #nome="ngModel" required
                     [ngModel]="reminder?.deadline" />
                 </mat-form-field>
