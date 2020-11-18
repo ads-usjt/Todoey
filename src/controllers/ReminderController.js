@@ -10,6 +10,10 @@ exports.default = {
     async index(request, response) {
         const reminderRepository = typeorm_1.getRepository(Reminder_1.default);
         const { user_id } = request.headers;
+        if (!user_id) {
+            return response.status(422)
+                .json({ missing_property_error: 'You have to provide a user_id in headers' });
+        }
         const reminders = await reminderRepository.find({
             where: { user: { id: user_id } }
         });
