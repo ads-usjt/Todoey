@@ -11,7 +11,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <div class="d-flex flex-column">
             <label class="m-0">Deadline:</label>
-            <p class="m-0">{{reminder.deadline | date: "EEE dd/MM/yyyy": "GMT-3"}}</p>
+            <p class="m-0">{{reminder.deadline | date: "EEE MM/dd/yyyy": "America/Sao_Paulo"}}</p>
           </div>
           <div>
             <i-feather name="edit-2" [routerLink]="['/edit', reminder.id]"></i-feather>

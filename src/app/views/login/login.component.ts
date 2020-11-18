@@ -25,15 +25,16 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // ping heroku to start up the server before login
     this.http.get(baseUrl).toPromise()
       .then(
         ({ welcome_message }: any ) => {
           return console.table({
-            heroku_awaked: true,
-            message: welcome_message ,
+            heroku_awaked: welcome_message ? true : false,
+            server_at: welcome_message ? baseUrl : undefined ,
           });
         }
-      ).catch(e => console.error(e));
+      ).catch(e => console.error(`Error trying to ping heroku: ${e}`));
   }
 
   async onSubmit(form: NgForm): Promise<void> {

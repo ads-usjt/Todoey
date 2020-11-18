@@ -11,7 +11,11 @@ export default {
   /**
    * @param  date receive a string in the ISO format (yyyy-MM-dd) and convert to the milliseconds since 01/01/1970
    */
-  toMilliseconds: (date: string): number => new Date(date).getTime(),
+  toMilliseconds(date: string): number {
+    let [ year , month, day ] = date.split('-').map( string => Number(string) );
+
+    return new Date( year, --month , day ).getTime();
+  },
 
   /**
    * @param  date receive a string in the ISO format (yyyy-MM-dd) or the milliseconds since 01/01/1970 and convert to Date
