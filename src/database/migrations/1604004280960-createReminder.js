@@ -21,7 +21,7 @@ class createReminder1604004280960 {
                 },
                 {
                     name: 'body',
-                    type: 'varchar',
+                    type: 'text',
                 },
                 {
                     name: 'deadline',

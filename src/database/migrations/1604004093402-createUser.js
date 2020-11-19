@@ -21,11 +21,12 @@ class createUser1604004093402 {
                 },
                 {
                     name: 'email',
-                    type: 'varchar'
+                    type: 'varchar',
+                    isUnique: true,
                 },
                 {
                     name: 'password',
-                    type: 'varchar'
+                    type: 'varchar',
                 },
             ]
         }));
