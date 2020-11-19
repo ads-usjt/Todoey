@@ -26,12 +26,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     // ping heroku to start up the server before login
+    const elapsedTime = Date.now();
     this.http.get(baseUrl).toPromise()
       .then(
         ({ welcome_message }: any ) => {
           return console.table({
             heroku_awaked: welcome_message ? true : false,
             server_at: welcome_message ? baseUrl : undefined ,
+            elapsed_time: `${elapsedTime - Date.now()}s`,
           });
         }
       ).catch(e => console.error(`Error trying to ping heroku: ${e}`));

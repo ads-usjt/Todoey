@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   private modo = 'create';
   showForm = false;
   private id: number;
-  reminder: Reminder;
+  reminder = new Reminder();
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
