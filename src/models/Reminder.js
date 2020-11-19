@@ -21,7 +21,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Reminder.prototype, "id", void 0);
 __decorate([
-    typeorm_1.Column(),
+    typeorm_1.Column({ length: 25 }),
     __metadata("design:type", String)
 ], Reminder.prototype, "title", void 0);
 __decorate([
