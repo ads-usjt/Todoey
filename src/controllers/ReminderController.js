@@ -36,7 +36,12 @@ exports.default = {
         const reminder = await reminderRepository.create({
             user, title, deadline, createdAt, body
         });
-        await reminderRepository.save(reminder);
+        try {
+            await reminderRepository.save(reminder);
+        }
+        catch (e) {
+            return response.status(500).json({ error: e });
+        }
         return response.status(201).json(reminder);
     },
     async delete(request, response) {
