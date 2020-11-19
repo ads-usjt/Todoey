@@ -3,15 +3,15 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn } from 't
 import Reminder from './Reminder';
 
 @Entity('user')
-export default class User{
+export default class User {
 
   @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Column()
+  @Column({ length: 50 })
   name: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
@@ -20,6 +20,6 @@ export default class User{
   @OneToMany(() => Reminder, reminder => reminder.user, {
     cascade: ['insert', 'update']
   })
-  @JoinColumn({name: 'user_id'})
+  @JoinColumn({ name: 'user_id' })
   reminders?: Array<Reminder>;
 }

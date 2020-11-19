@@ -2,7 +2,7 @@
   "_comment": "NAO MEXE NESSE PACKAGE JSON IRMÃO, É PRA ALTERAR O DA PASTA ANTERIOR",
   "name": "todoey-rest-api",
   "description": "Todoey REST API",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "main": "src/server.js",
   "license": "MIT",
   "author": "Lucas Souza",

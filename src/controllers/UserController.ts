@@ -5,7 +5,7 @@ import User from '../models/User';
 
 export default {
 
-  async index(request: Request, response: Response){
+  async index(request: Request, response: Response) {
     const userRepository = getRepository(User);
     const users = await userRepository.find({
       select: ['id', 'name', 'email'],
@@ -14,7 +14,7 @@ export default {
     return response.json(users);
   },
 
-  async show(request: Request, response: Response){
+  async show(request: Request, response: Response) {
     const userRepository = getRepository(User);
     const { id } = request.params;
 
@@ -26,7 +26,7 @@ export default {
     return response.json(user);
   },
 
-  async create (request: Request, response: Response){
+  async create(request: Request, response: Response) {
     const userRepository = getRepository(User);
     const {
       name,
@@ -34,16 +34,16 @@ export default {
       password
     } = request.body;
 
-    const user = await userRepository.create({
+    const user = userRepository.create({
       name, email, password
     });
 
     await userRepository.save(user);
 
-    return response.status(201).json({ name,email });
+    return response.status(201).json({ name, email });
   },
 
-  async update (request: Request, response: Response){
+  async update(request: Request, response: Response) {
     const userRepository = getRepository(User);
     const {
       id,
@@ -56,7 +56,7 @@ export default {
       id, name, email, password
     };
 
-    await userRepository.save( updatedUser );
+    await userRepository.save(updatedUser);
 
     return response.json({ id, name, email });
   },

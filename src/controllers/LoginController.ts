@@ -7,7 +7,7 @@ import User from '../models/User';
 
 export default {
 
-  async login (request: Request, response: Response){
+  async login(request: Request, response: Response) {
 
     const userRepository = getRepository(User);
 
@@ -15,7 +15,7 @@ export default {
 
     const user = await userRepository.findOne({ where: { email, password } });
 
-    if(user){
+    if (user) {
 
       const { id } = user;
       const token = jwt.sign({ id }, process.env.SECRET as string || 'vcnxzjgkherwioçgjawefkltçgn34uioqph', {
@@ -24,7 +24,7 @@ export default {
 
       return response.json({ auth: true, user_id: id, token: token });
     }
-    return response.status(500).json({message: 'Invalid Login!'});
+    return response.status(500).json({ message: 'Invalid Login!' });
 
   }
 

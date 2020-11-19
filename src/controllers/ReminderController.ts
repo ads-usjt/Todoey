@@ -6,14 +6,14 @@ import User from '../models/User';
 
 export default {
 
-  async index(request: Request, response: Response){
+  async index(request: Request, response: Response) {
     const reminderRepository = getRepository(Reminder);
 
     const { user_id } = request.headers;
 
     if (!user_id) {
       return response.status(422)
-                     .json({ missing_property_error: 'You have to provide a user_id in headers' });
+        .json({ missing_property_error: 'You have to provide a user_id in headers' });
     }
 
     const reminders = await reminderRepository.find({
@@ -23,18 +23,20 @@ export default {
     return response.json(reminders);
   },
 
-  async show(request: Request, response: Response){
+  async show(request: Request, response: Response) {
     const reminderRepository = getRepository(Reminder);
     const { id } = request.params;
 
     const reminder: Reminder = await reminderRepository.findOneOrFail(id, {
-      relations: ['user']
+      relations: ['user'],
     });
 
-    return response.json(reminder);
+    const parsedReminder = removeUserPassword(reminder);
+
+    return response.json(parsedReminder);
   },
 
-  async create (request: Request, response: Response){
+  async create(request: Request, response: Response) {
     const reminderRepository = getRepository(Reminder);
     const userRepository = getRepository(User);
     const {
@@ -44,33 +46,35 @@ export default {
       body,
     } = request.body;
 
-    const user: User = await userRepository.findOneOrFail(user_id);
+    const user = await userRepository.findOneOrFail(user_id);
 
-    const createdAt = Date.now();
+    const createdAt: number = Date.now();
 
-    const reminder = await reminderRepository.create({
+    const reminder = reminderRepository.create({
       user, title, deadline, createdAt, body
     });
 
     await reminderRepository.save(reminder);
 
-    return response.status(201).json(reminder);
+    const parsedReminder = removeUserPassword(reminder);
+
+    return response.status(201).json(parsedReminder);
   },
 
-  async delete(request: Request, response: Response){
+  async delete(request: Request, response: Response) {
     const reminderRepository = getRepository(Reminder);
     const { id } = request.params;
 
     const reminder: Reminder = await reminderRepository.findOneOrFail(id, {
-      relations: ['user']
+      relations: ['user'],
     });
 
     await reminderRepository.delete(reminder);
 
-    return response.json({message: 'Reminder deleted successfully'});
+    return response.json({ message: 'Reminder deleted successfully' });
   },
 
-  async update (request: Request, response: Response){
+  async update(request: Request, response: Response) {
     const reminderRepository = getRepository(Reminder);
     const {
       title,
@@ -79,7 +83,7 @@ export default {
     } = request.body;
 
     const id = Number(request.params.id);
-    const createdAt = Date.now();
+    const createdAt: number = Date.now();
 
     const updatedReminder: Reminder = {
       id, title, deadline, createdAt, body,
@@ -90,4 +94,8 @@ export default {
     return response.json(updatedReminder);
   }
 
+};
+
+function removeUserPassword(reminder: Reminder) {
+  return { ...reminder, user: { name: reminder.user?.name, email: reminder.user?.email } };
 }

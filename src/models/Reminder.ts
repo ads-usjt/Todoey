@@ -3,12 +3,12 @@ import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 't
 import User from './User';
 
 @Entity('reminder')
-export default class Reminder{
+export default class Reminder {
 
   @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Column()
+  @Column({ length: 25 })
   title: string;
 
   @Column()
@@ -21,7 +21,7 @@ export default class Reminder{
   body: string;
 
   @ManyToOne(() => User, user => user.reminders)
-  @JoinColumn({name: 'user_id'})
+  @JoinColumn({ name: 'user_id' })
   user?: User;
 
 }
