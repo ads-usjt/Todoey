@@ -20,7 +20,7 @@ export class ReminderService {
   constructor(
     private httpClient: HttpClient,
     private router: Router,
-  ) { }
+  ){}
 
   private remindersUpdatedList = new Subject<Reminder[]>();
 
@@ -43,13 +43,17 @@ export class ReminderService {
   }
 
   async getReminder(id: number): Promise<Reminder> {
+
     const reminder = await this.httpClient.get<Reminder>(`${baseUrl}/reminders/${id}`).toPromise();
+
     const parsedReminder: Reminder = {
       ...reminder,
       deadline: DateUtil.toDateISOString(reminder.deadline),
       createdAt: DateUtil.toDateISOString(reminder.createdAt),
     };
+
     return parsedReminder;
+
   }
 
   addReminder(title: string, deadline: string, body: string): void {
@@ -99,12 +103,10 @@ export class ReminderService {
       `${baseUrl}/reminders/${id}`,
       reminder
     ).subscribe(reminder => {
-      const copy = [...this.reminders];
-      const indice = copy.findIndex(rmdr => rmdr.id === reminder.id);
+      const index = this.reminders.findIndex(rmdr => rmdr.id === reminder.id);
 
-      copy[indice] = reminder;
+      this.reminders[index] = reminder;
 
-      this.reminders = copy;
       this.remindersUpdatedList.next([...this.reminders]);
     });
     this.router.navigate(['/home']);
