@@ -23,9 +23,10 @@ exports.default = {
         const reminderRepository = typeorm_1.getRepository(Reminder_1.default);
         const { id } = request.params;
         const reminder = await reminderRepository.findOneOrFail(id, {
-            relations: ['user']
+            relations: ['user'],
         });
-        return response.json(reminder);
+        const parsedReminder = removeUserPassword(reminder);
+        return response.json(parsedReminder);
     },
     async create(request, response) {
         const reminderRepository = typeorm_1.getRepository(Reminder_1.default);
@@ -33,17 +34,18 @@ exports.default = {
         const { user_id, title, deadline, body, } = request.body;
         const user = await userRepository.findOneOrFail(user_id);
         const createdAt = Date.now();
-        const reminder = await reminderRepository.create({
+        const reminder = reminderRepository.create({
             user, title, deadline, createdAt, body
         });
         await reminderRepository.save(reminder);
-        return response.status(201).json(reminder);
+        const parsedReminder = removeUserPassword(reminder);
+        return response.status(201).json(parsedReminder);
     },
     async delete(request, response) {
         const reminderRepository = typeorm_1.getRepository(Reminder_1.default);
         const { id } = request.params;
         const reminder = await reminderRepository.findOneOrFail(id, {
-            relations: ['user']
+            relations: ['user'],
         });
         await reminderRepository.delete(reminder);
         return response.json({ message: 'Reminder deleted successfully' });
@@ -60,3 +62,7 @@ exports.default = {
         return response.json(updatedReminder);
     }
 };
+function removeUserPassword(reminder) {
+    var _a, _b;
+    return Object.assign(Object.assign({}, reminder), { user: { name: (_a = reminder.user) === null || _a === void 0 ? void 0 : _a.name, email: (_b = reminder.user) === null || _b === void 0 ? void 0 : _b.email } });
+}

@@ -26,7 +26,7 @@ exports.default = {
     async create(request, response) {
         const userRepository = typeorm_1.getRepository(User_1.default);
         const { name, email, password } = request.body;
-        const user = await userRepository.create({
+        const user = userRepository.create({
             name, email, password
         });
         await userRepository.save(user);
