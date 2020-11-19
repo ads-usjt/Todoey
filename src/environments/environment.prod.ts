@@ -2,4 +2,4 @@ export const environment = {
   production: true
 };
 
-export const baseUrl = 'http://todoey-rest.herokuapp.com';
+export const baseUrl = 'https://todoey-rest.herokuapp.com';
