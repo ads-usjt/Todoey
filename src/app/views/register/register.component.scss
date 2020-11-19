@@ -9,12 +9,6 @@
   flex-direction: column;
   flex: 1;
 
-  h1 {
-    text-align: center;
-    color: white;
-    padding-bottom: 1rem;
-  }
-
   mat-card {
     flex: 1;
     background-color: white;
@@ -23,6 +17,7 @@
     display: flex;
     flex-direction: column;
     margin: auto;
+    text-align: center;
 
     button {
       color: white;
