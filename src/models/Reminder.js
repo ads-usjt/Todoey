@@ -26,11 +26,11 @@ __decorate([
 ], Reminder.prototype, "title", void 0);
 __decorate([
     typeorm_1.Column(),
-    __metadata("design:type", Number)
+    __metadata("design:type", typeof BigInt === "function" ? BigInt : Object)
 ], Reminder.prototype, "deadline", void 0);
 __decorate([
     typeorm_1.Column(),
-    __metadata("design:type", Number)
+    __metadata("design:type", typeof BigInt === "function" ? BigInt : Object)
 ], Reminder.prototype, "createdAt", void 0);
 __decorate([
     typeorm_1.Column(),
