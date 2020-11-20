@@ -9,8 +9,7 @@ const User_1 = __importDefault(require("../models/User"));
 exports.default = {
     async index(request, response) {
         const reminderRepository = typeorm_1.getRepository(Reminder_1.default);
-        const userId = request.headers['User-ID'];
-        console.log(request.headers);
+        const userId = request.headers['user-id'];
         if (!userId) {
             return response.status(422)
                 .json({ missing_property_error: 'You have to provide a userId in headers' });
