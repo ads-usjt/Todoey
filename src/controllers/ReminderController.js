@@ -12,7 +12,7 @@ exports.default = {
         const userId = request.headers['user-id'];
         if (!userId) {
             return response.status(422)
-                .json({ missing_property_error: 'You have to provide a userId in headers' });
+                .json({ missing_property_error: 'You have to provide a User-ID in headers' });
         }
         const reminders = await reminderRepository.find({
             where: { user: { id: userId } }
