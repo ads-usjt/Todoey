@@ -86,7 +86,7 @@ export const SessionHandler = {
   getTokenFromStorage(): SessionAuth {
     const session = JSON.parse(window.localStorage.getItem('session'));
     if (!session) {
-      return { auth: false, token: undefined, user_id: undefined } as SessionAuth;
+      return { auth: false, token: undefined, userId: undefined } as SessionAuth;
     } else {
       return session;
     }

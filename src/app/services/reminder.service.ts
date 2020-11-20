@@ -27,7 +27,7 @@ export class ReminderService {
   getReminders(): void {
     this.httpClient.get<Reminder[]>(
       `${baseUrl}/reminders`,
-      { headers: { user_id: String(SessionHandler.getTokenFromStorage().user_id) } }
+      { headers: { 'User-ID': String(SessionHandler.getTokenFromStorage().userId) } }
     )
       .pipe(map(reminders => reminders.map(reminder => {
         return {
@@ -59,7 +59,7 @@ export class ReminderService {
   addReminder(title: string, deadline: string, body: string): void {
 
     const reminder: Reminder = {
-      user_id: SessionHandler.getTokenFromStorage().user_id,
+      userId: SessionHandler.getTokenFromStorage().userId,
       title,
       deadline: DateUtil.toMilliseconds(deadline),
       body,
@@ -93,7 +93,7 @@ export class ReminderService {
 
     const reminder: Reminder = {
       id,
-      user_id: SessionHandler.getTokenFromStorage().user_id,
+      userId: SessionHandler.getTokenFromStorage().userId,
       title,
       deadline: DateUtil.toMilliseconds(deadline),
       body,

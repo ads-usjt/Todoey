@@ -4,5 +4,5 @@ export class Reminder {
   deadline: number | string;
   createdAt?: number | string;
   body: string;
-  user_id?: number;
+  userId?: number;
 }
