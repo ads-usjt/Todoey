@@ -9,13 +9,13 @@ const User_1 = __importDefault(require("../models/User"));
 exports.default = {
     async index(request, response) {
         const reminderRepository = typeorm_1.getRepository(Reminder_1.default);
-        const { user_id } = request.headers;
-        if (!user_id) {
+        const { userId } = request.headers;
+        if (!userId) {
             return response.status(422)
-                .json({ missing_property_error: 'You have to provide a user_id in headers' });
+                .json({ missing_property_error: 'You have to provide a userId in headers' });
         }
         const reminders = await reminderRepository.find({
-            where: { user: { id: user_id } }
+            where: { user: { id: userId } }
         });
         return response.json(reminders);
     },
@@ -31,8 +31,8 @@ exports.default = {
     async create(request, response) {
         const reminderRepository = typeorm_1.getRepository(Reminder_1.default);
         const userRepository = typeorm_1.getRepository(User_1.default);
-        const { user_id, title, deadline, body, } = request.body;
-        const user = await userRepository.findOneOrFail(user_id);
+        const { userId, title, deadline, body, } = request.body;
+        const user = await userRepository.findOneOrFail(userId);
         const createdAt = Date.now();
         const reminder = reminderRepository.create({
             user, title, deadline, createdAt, body
