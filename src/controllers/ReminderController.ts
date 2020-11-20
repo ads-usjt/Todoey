@@ -9,15 +9,15 @@ export default {
   async index(request: Request, response: Response) {
     const reminderRepository = getRepository(Reminder);
 
-    const { user_id } = request.headers;
+    const userId = request.headers['user-id'];
 
-    if (!user_id) {
+    if (!userId) {
       return response.status(422)
-        .json({ missing_property_error: 'You have to provide a user_id in headers' });
+        .json({ missing_property_error: 'You have to provide a User-ID in headers' });
     }
 
     const reminders = await reminderRepository.find({
-      where: { user: { id: user_id } }
+      where: { user: { id: userId } }
     })
 
     return response.json(reminders);
@@ -40,13 +40,13 @@ export default {
     const reminderRepository = getRepository(Reminder);
     const userRepository = getRepository(User);
     const {
-      user_id,
+      userId,
       title,
       deadline,
       body,
     } = request.body;
 
-    const user = await userRepository.findOneOrFail(user_id);
+    const user = await userRepository.findOneOrFail(userId);
 
     const createdAt: number = Date.now();
 
