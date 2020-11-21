@@ -86,6 +86,7 @@ export class ReminderService {
         this.remindersUpdatedList.next([...this.reminders]);
         alert('ToDo Removed successfully');
       });
+    this.router.navigate(['/home']);
 
   }
 

@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
 import { AccountService } from 'src/app/services/auth/account/account.service';
 
 import { User } from 'src/app/models/user.entity';
-import { Router } from '@angular/router';
 
 import { baseUrl } from 'src/environments/environment';
 
@@ -20,7 +19,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private accountService: AccountService,
-    private router: Router,
     private http: HttpClient
   ) { }
 

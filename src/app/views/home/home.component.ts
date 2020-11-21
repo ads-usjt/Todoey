@@ -40,8 +40,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  showSaveReminderForm(show = true): void {
-    this.showForm = show;
+  showSaveReminderForm(): void {
+    this.showForm = !this.showForm;
   }
 
   onAddReminder(form: NgForm): void {
@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
         form.value.deadline,
         form.value.body,
       );
-      this.showSaveReminderForm(false);
+      this.showSaveReminderForm();
     } else {
       this.reminderService.updateReminder(
         this.id,
