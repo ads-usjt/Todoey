@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
 
@@ -45,6 +46,7 @@ import { httpInterceptorProviders } from './services/auth/http-interceptors';
     MatButtonModule,
     MatToolbarModule,
     MatExpansionModule,
+    MatSnackBarModule,
     IconsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,

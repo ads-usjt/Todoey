@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertUtilService } from 'src/app/services/alertutil.service';
 import { AccountService } from 'src/app/services/auth/account/account.service';
 import { User } from '../../models/user.entity';
 
@@ -10,7 +11,10 @@ import { User } from '../../models/user.entity';
 })
 export class RegisterComponent {
 
-  constructor(private accountService: AccountService, private router: Router) { }
+  constructor(
+    private accountService: AccountService,
+    private alertUtil: AlertUtilService,
+  ){}
 
   @Output() registerAdd = new EventEmitter();
 
@@ -20,7 +24,7 @@ export class RegisterComponent {
     try {
       await this.accountService.createAccount(this.user);
 
-      alert('User created successfully');
+      this.alertUtil.showAlert('User created successfully');
     } catch (error) {
       console.error(error);
     }

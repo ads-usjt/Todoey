@@ -7,6 +7,7 @@ import { AccountService } from 'src/app/services/auth/account/account.service';
 import { User } from 'src/app/models/user.entity';
 
 import { baseUrl } from 'src/environments/environment';
+import { AlertUtilService } from 'src/app/services/alertutil.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private accountService: AccountService,
-    private http: HttpClient
+    private http: HttpClient,
+    private alertUtil: AlertUtilService
   ) { }
 
   ngOnInit(): void {
@@ -45,7 +47,7 @@ export class LoginComponent implements OnInit {
       await this.accountService.login(this.login);
 
     } catch (error) {
-      alert('Invalid login, try again');
+      this.alertUtil.showErrorAlert('Invalid login, try again');
       console.error(`Login Error: ${error}`);
     }
   }

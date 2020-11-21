@@ -1,3 +1,19 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 i-feather { cursor: pointer; transition: transform 0.2s; &:hover{transform: scale(1.1)}}
+
+.error-alert{
+  background-color: var(--red);
+  color: white;
+  .mat-button-wrapper{
+    color: white;
+  }
+}
+
+.info-alert{
+  background-color: white;
+  color: #3BB5D4;
+  .mat-button-wrapper{
+    color: #3BB5D4;
+  }
+}

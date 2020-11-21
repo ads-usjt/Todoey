@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 
 import DateUtil from 'src/app/services/dateutil.service';
 import { SessionHandler } from 'src/app/services/auth/account/account.service';
+import { AlertUtilService } from './alertutil.service';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,7 @@ export class ReminderService {
   constructor(
     private httpClient: HttpClient,
     private router: Router,
+    private alertUtil: AlertUtilService,
   ){}
 
   private remindersUpdatedList = new Subject<Reminder[]>();
@@ -84,7 +86,7 @@ export class ReminderService {
           return rem.id !== id;
         });
         this.remindersUpdatedList.next([...this.reminders]);
-        alert('ToDo Removed successfully');
+        this.alertUtil.showAlert('ToDo Removed successfully');
       });
     this.router.navigate(['/home']);
 
