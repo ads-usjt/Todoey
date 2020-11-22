@@ -6,6 +6,26 @@
 
 ### [online heroku deploy](https://todoey-rest.herokuapp.com/)
 
+### Clone repo and usage instructions
+
+```sh
+  # Clone repo and change branch to rest
+  $ git clone https://github.com/ads-usjt/Todoey.git
+  $ git checkout rest
+
+  # Install dependencies
+  $ yarn install
+  
+  # Initialize database
+  $ yarn typeorm migration:run
+
+  # Run
+  $ yarn dev
+```
+> ℹ️ it will be served at http://localhost:3333/
+
+<br/>
+
 ## Routes
 <br/>
 
@@ -13,18 +33,54 @@
 <br/>
 
 > **GET:** /reminders
-- list all registered reminders
+- list all registered reminders associated from a specific user
+
+Request Header Exemple:
+```Js
+  'User-ID': 1
+```
+
+Response Body Exemple:
+```Json
+[
+  {
+    "id": 1,
+    "title": "Test",
+    "deadline": "1606359600000",
+    "createdAt": "1605995102298",
+    "body": "First Test"
+  },
+  {
+    "id": 2,
+    "title": "Test 2",
+    "deadline": "1606359600000",
+    "createdAt": "1605995102298",
+    "body": "Second Test 🤕"
+  },
+]
+```
 
 > **GET:** /reminders/1
 - list one reminder by determined id
 
+Response Body Exemple:
+```Json
+{
+  "id": 1,
+  "title": "Test",
+  "deadline": "1606359600000",
+  "createdAt": "1605995102298",
+  "body": "First Test"
+}
+```
+
 > **POST:** /reminders
 - create a new reminder
 
-accepted body exemple
+Accepted Request Body Exemple:
 ```Json
   {
-    "user_id": 1,
+    "userId": 1,
     "title": "First Reminder",
     "deadline": 1604123513463,
     "body": "First text body reminder, let's just write some whatever"
@@ -34,11 +90,11 @@ accepted body exemple
 > **PUT:** /reminders/1
 - update a reminder by specified id
 
-accepted body exemple
+Accepted Request Body Exemple:
 ```Json
   {
     "title" : "update works!",
-    "deadline": "1604123513463",
+    "deadline": 1604123513463,
     "body": "i've just updated the reminder"
   }
 ```
@@ -51,15 +107,67 @@ accepted body exemple
 <br/>
 
 > **GET:** /users
-- list all registered users
+- list all registered users a their reminders
+
+Response Body Exemple:
+```Json
+  [
+    {
+      "id": 1,
+      "name": "Lucas Souza",
+      "email": "lucasliet@test.com",
+      "reminders": [
+        {
+          "id": 1,
+          "title": "Entrega",
+          "deadline": "1606359600000",
+          "createdAt": "1605995102298",
+          "body": "Tem que tá pronto até lá! 🤕"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Jonatan Araújo",
+      "email": "djow@nathan.com",
+      "reminders": [
+        {
+          "id": 3,
+          "title": "Test",
+          "deadline": "1605927600000",
+          "createdAt": "1605967290117",
+          "body": "Test"
+        }
+      ]
+    }
+  ]
+```
 
 > **GET:** /users/1
 - list one user by determined id
 
+Response Body Exemple:
+```Json
+{
+  "id": 1,
+  "name": "Lucas Souza",
+  "email": "lucasliet@test.com",
+  "reminders": [
+    {
+      "id": 1,
+      "title": "Entrega",
+      "deadline": "1606359600000",
+      "createdAt": "1605995102298",
+      "body": "Tem que tá pronto até lá! 🤕"
+    }
+  ]
+}
+```
+
 > **POST:** /users
 - create a new user
 
-accepted body exemple
+Accepted Request Body Exemple:
 ```Json
   {
     "name": "Lucas Souza",
@@ -71,7 +179,7 @@ accepted body exemple
 > **POST:** /login
 - send data to login
 
-accepted body exemple
+Accepted Request Body Exemple:
 ```Json
   {
     "email": "lucasliet@test.com",
@@ -82,7 +190,7 @@ accepted body exemple
 > **PUT:** /users/1
 - update a user by specified id
 
-accepted body exemple
+Accepted Request Body Exemple:
 ```Json
   {
     "name": "Lucas Souza",
