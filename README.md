@@ -11,16 +11,18 @@
 </p>
 
 # 📰️ Índice
-- [Como utilisar](#%EF%B8%8F-como-usar)
+- [Como utilizar](#%EF%B8%8F-como-utilizar)
 - [Sobre](#%EF%B8%8F-sobre)
 - [Tecnologias Utilizadas](#%EF%B8%8F-tecnologias-utilizadas)
 - [Preview](#%EF%B8%8F-preview)
 - [Para baixar e reproduzir o projeto](#%EF%B8%8F-para-baixar-e-reproduzir-o-projeto)
 - [Como contribuir](#%EF%B8%8F-como-contribuir)
-- [Licença](#%EF%B8%8F-licença)
+- [Licença](#-licença)
 # 📚️ Sobre
 
 Todoey é um app de cadastro de lembretes feito em Angular como projeto da Universidade São Judas Tadeu da turma de ADS 4º Semestre
+
+> o backend utilizado pode ser encontrado na branch [rest](https://github.com/ads-usjt/Todoey/tree/rest)
 
 # 👨‍💻️ Tecnologias Utilizadas
 
@@ -35,7 +37,7 @@ Alguns destaques nas tecnologias utilizadas neste projeto são:
 > O mockup utilizado para o projeto está disponivel no [Figma](https://www.figma.com/file/GPWIRTijJmWMIQcXSYXNUO/Todoey?node-id=0%3A1)
 
 
-# 📝️ Como utilisar
+# 📝️ Como utilizar
 
 > Você pode acessar a versão web pelo link http://ads-usjt.github.io/Todoey tanto pelo computador quanto pelo celular, ele também é **instalavel como PWA**, adicionando um atalho no celular para abrir como um app
 
