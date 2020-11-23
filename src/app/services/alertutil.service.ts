@@ -1,8 +1,8 @@
-import { Injectable, HostListener } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AlertUtilService {
 
@@ -14,7 +14,7 @@ export class AlertUtilService {
       duration: 3000,
       horizontalPosition: 'center',
       verticalPosition: window.innerWidth >= 468 ? 'top' : 'bottom',
-    })
+    });
   }
 
   showErrorAlert(message: string): void {

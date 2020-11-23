@@ -12,9 +12,9 @@ export default {
    * @param  date receive a string in the ISO format (yyyy-MM-dd) and convert to the milliseconds since 01/01/1970
    */
   toMilliseconds(date: string): number {
-    let [ year , month, day ] = date.split('-').map( string => Number(string) );
+    const [ year , month, day ] = date.split('-').map( dateString => Number(dateString) );
 
-    return new Date( year, --month , day ).getTime();
+    return new Date( year, month - 1 , day ).getTime();
   },
 
   /**

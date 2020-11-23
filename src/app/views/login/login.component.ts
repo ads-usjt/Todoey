@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
           return console.table({
             heroku_awaked: welcome_message ? true : false,
             server_at: welcome_message ? baseUrl : undefined ,
-            elapsed_time: `~${Math.round((Date.now() - elapsedTime)/1000)}sec`,
+            elapsed_time: `~${Math.round((Date.now() - elapsedTime) / 1000)}sec`,
           });
         }
       ).catch(e => console.error(`Error trying to ping heroku: ${e}`));

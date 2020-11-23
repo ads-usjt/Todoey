@@ -71,8 +71,8 @@ export class ReminderService {
       `${baseUrl}/reminders`,
       reminder
     )
-      .subscribe(reminder => {
-        this.reminders.push(reminder);
+      .subscribe(postedReminder => {
+        this.reminders.push(postedReminder);
         this.remindersUpdatedList.next([...this.reminders]);
         this.alertUtil.showAlert('ToDo added successfully');
       });
@@ -106,10 +106,10 @@ export class ReminderService {
     this.httpClient.put<Reminder>(
       `${baseUrl}/reminders/${id}`,
       reminder
-    ).subscribe(reminder => {
-      const index = this.reminders.findIndex(rmdr => rmdr.id === reminder.id);
+    ).subscribe(updatedReminder => {
+      const index = this.reminders.findIndex(oldReminder => oldReminder.id === updatedReminder.id);
 
-      this.reminders[index] = reminder;
+      this.reminders[index] = updatedReminder;
 
       this.remindersUpdatedList.next([...this.reminders]);
       this.alertUtil.showAlert('ToDo updated successfully');
