@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, HostListener } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
@@ -6,24 +6,19 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AlertUtilService {
 
-  constructor(private snackBar: MatSnackBar) { }
+  constructor(private snackBar: MatSnackBar){}
 
-  showAlert(message: string): void {
+  showAlert(message: string, isError = false): void {
     this.snackBar.open(message, 'X', {
-      panelClass: 'info-alert',
+      panelClass: isError ? 'error-alert' : 'info-alert',
       duration: 3000,
-      horizontalPosition: "center",
-      verticalPosition: "top",
+      horizontalPosition: 'center',
+      verticalPosition: window.innerWidth >= 468 ? 'top' : 'bottom',
     })
   }
 
   showErrorAlert(message: string): void {
-    this.snackBar.open(message, 'X', {
-      panelClass: 'error-alert',
-      duration: 3000,
-      horizontalPosition: "center",
-      verticalPosition: "top",
-    })
+    this.showAlert(message, true);
   }
 
 }

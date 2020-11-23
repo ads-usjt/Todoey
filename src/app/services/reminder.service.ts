@@ -74,6 +74,7 @@ export class ReminderService {
       .subscribe(reminder => {
         this.reminders.push(reminder);
         this.remindersUpdatedList.next([...this.reminders]);
+        this.alertUtil.showAlert('ToDo added successfully');
       });
 
   }
@@ -86,7 +87,7 @@ export class ReminderService {
           return rem.id !== id;
         });
         this.remindersUpdatedList.next([...this.reminders]);
-        this.alertUtil.showAlert('ToDo Removed successfully');
+        this.alertUtil.showAlert('ToDo removed successfully');
       });
     this.router.navigate(['/home']);
 
@@ -111,6 +112,7 @@ export class ReminderService {
       this.reminders[index] = reminder;
 
       this.remindersUpdatedList.next([...this.reminders]);
+      this.alertUtil.showAlert('ToDo updated successfully');
     });
     this.router.navigate(['/home']);
   }
