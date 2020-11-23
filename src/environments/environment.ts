@@ -6,7 +6,7 @@ export const environment = {
   production: false,
 };
 
-export const baseUrl = 'https://todoey-rest.herokuapp.com';
+export const baseUrl = 'http://localhost:3333';
 
 /*
  * For easier debugging in development mode, you can import the following file

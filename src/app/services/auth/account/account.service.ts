@@ -63,6 +63,7 @@ export class AccountService {
   isUserLoggedIn(): boolean {
     const token = this.getAuthorizationToken();
     if (!token || this.isTokenExpired(token)) {
+      window.localStorage.clear();
       return false;
     }
     return true;

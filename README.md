@@ -31,6 +31,8 @@ Alguns destaques nas tecnologias utilizadas neste projeto são:
 - [TypeScript](https://www.typescriptlang.org/)
 - [Node.js](https://nodejs.org/en/)
 - [TypeORM](https://typeorm.io/)
+- [PostgresSQL](https://www.postgresql.org/)
+- [SQLite](https://sqlite.org/index.html)
 - [Angular](https://angular.io/)
 
 # 🔎️ Preview
@@ -62,17 +64,37 @@ Alguns destaques nas tecnologias utilizadas neste projeto são:
 1. **Faça um clone:**
 
 ```sh
-  $ git clone https://github.com/ads-usjt/Todoey.git
+  $ git clone https://github.com/ads-usjt/Todoey.git Todoey/angular
+  $ git clone https://github.com/ads-usjt/Todoey.git Todoey/backend
+  $ cd Todoey/backend
 ```
 
-2. **Executando a Aplicação:**
+2. **Executando o backend:**
 
 ```sh
+  # Mude para a branch da API REST
+  $ git checkout rest
+
+  # Instale as dependências
+  $ yarn install
+
+  # Inicialize o banco de dados temporário
+  $ yarn typeorm migration:run
+
+  # Inicie a aplicação rest
+  $ yarn dev
+```
+
+5. **Executando a aplicação web**
+```sh
+  # Em outro terminal navegue até a pasta angular no projeto
+  $ cd ../angular
+
   # Instale as dependências
   $ yarn install
 
   # Inicie a aplicação web
-  $ ng server -o
+  $ ng serve -o
 ```
 
 # 🤝️ Como contribuir

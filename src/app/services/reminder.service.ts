@@ -5,7 +5,7 @@ import { Reminder } from 'src/app/models/reminder.entity';
 
 import { map } from 'rxjs/operators';
 
-import { baseUrl } from '../../environments/environment';
+import { baseUrl } from 'src/environments/environment';
 import { Router } from '@angular/router';
 
 import DateUtil from 'src/app/services/dateutil.service';
