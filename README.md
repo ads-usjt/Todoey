@@ -10,7 +10,8 @@
 
 ```sh
   # Clone repo and change branch to rest
-  $ git clone https://github.com/ads-usjt/Todoey.git
+  $ git clone https://github.com/ads-usjt/Todoey.git Todoey/backend
+  $ cd Todoey/backend
   $ git checkout rest
 
   # Install dependencies
